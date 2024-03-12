@@ -1,9 +1,25 @@
+import { Route, Routes } from "react-router-dom";
+import PageLayout from "./pages/PageLayout";
+import { DiVim } from "react-icons/di";
+import Logout from "./security/Logout";
+import Login from "./security/Login";
+import Signup from "./security/Signup";
+
 function App() {
-	return (
-		<div>
-			<h1>App</h1>
-		</div>
-	);
+    return (
+        <>
+            <PageLayout>
+                <Routes>
+                    <Route path="/" element={<div>Startpage</div>} />
+                    <Route path="/home" element={<div>Home</div>} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/signup" element={<Signup/>} />
+                    <Route path="/logout" element={<Logout />} />
+                </Routes>
+            </PageLayout>
+        </>
+    );
 }
 
+//<Route path="/" element="home" />
 export default App;
