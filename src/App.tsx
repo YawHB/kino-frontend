@@ -12,7 +12,7 @@ function App() {
         <>
             <PageLayout>
                 <Routes>
-                    <Route path="/" element={<StartPage/>} />
+                    <Route path="/" element={<StartPage />} />
                     <Route
                         path="/movies"
                         element={
@@ -28,6 +28,14 @@ function App() {
                         element={
                             <RequireAuth roles={["ADMIN"]}>
                                 <div>Admin</div>
+                            </RequireAuth>
+                        }
+                    />
+                    <Route
+                        path="/profile"
+                        element={
+                            <RequireAuth roles={["USER"]}>
+                                <div>My Profile</div>
                             </RequireAuth>
                         }
                     />

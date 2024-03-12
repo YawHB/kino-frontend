@@ -17,7 +17,7 @@ export default function KinoSelect() {
             <select
                 onChange={(e) => {
                     setKino(e.target.value);
-                    navigate("/home", { replace: true });
+                    navigate("/movies", { replace: true });
                 }}
             >
                 <option>{kino}</option>

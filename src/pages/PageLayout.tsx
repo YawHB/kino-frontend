@@ -1,19 +1,19 @@
-import { ReactNode } from "react"
+import { ReactNode } from "react";
+import {  useKino} from "../contexts/KinoProvider";
 import NavHeader from "../components/layouts/NavHeader";
 
 type Props = {
     children: ReactNode;
-}
+};
 
-
-export default function PageLayout({children}: Props) {
-
-
+export default function PageLayout({ children }: Props) {
+    const {kino} = useKino();
 
     return (
         <>
-            <NavHeader/>
+            {kino && <NavHeader />}
+
             {children}
         </>
-    )
+    );
 }
