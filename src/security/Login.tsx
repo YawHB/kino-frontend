@@ -38,7 +38,7 @@ export default function Login() {
                 {errors.username?.type === "required" && <p>Username is required</p>}
 
                 <label htmlFor="username">Password</label>
-                <input type="password" {...(register("password"), { required: true })} />
+                <input type="password" {...register("password", {required: true})} />
                 {errors.password?.type === "required" && <p>Password is required</p>}
 
                 <input type="submit" value="Login" />
