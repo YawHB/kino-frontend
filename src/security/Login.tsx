@@ -1,50 +1,46 @@
-import { useState } from "react";
 import { useAuth } from "../contexts/AuthProvider";
-import { User } from "../services/authFacade";
 import { useNavigate } from "react-router-dom";
+import { SubmitHandler, useForm } from "react-hook-form";
 
-const EMPTY_USER = { username: "", password: "" };
+type FormValues = {
+    username: string;
+    password: string;
+};
 
 export default function Login() {
     const auth = useAuth();
     const navigate = useNavigate();
-    const [user, setUser] = useState({...EMPTY_USER });
-    const [error, setError] = useState(null);
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<FormValues>();
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
+    const onSubmit: SubmitHandler<FormValues> = (user) => {
+        console.log(user);
 
-        auth.signIn(user as User)
+        auth.signIn(user)
             .then(() => {
+                //TODO: Login with username: blabla was successful
                 navigate("/home", { replace: true });
             })
             .catch((err) => {
                 //TODO: Toaster
-                setError(err.message);
+                console.log(err);
             });
-        
-        setUser({ ...EMPTY_USER });
     };
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <label htmlFor="username">Username</label>
-                <input
-                    type="text"
-                    name="username"
-                    id="username"
-                    value={user.username}
-                    onChange={(e) => setUser((prev) => ({ ...prev, username: e.target.value }))}
-                />
-                <label htmlFor="password">Password</label>
-                <input
-                    type="text"
-                    name="password"
-                    id="password"
-                    value={user.password}
-                    onChange={(e) => setUser((prev) => ({ ...prev, password: e.target.value }))}
-                />
+                <input {...register("username", { required: true })} />
+                {errors.username?.type === "required" && <p>Username is required</p>}
+
+                <label htmlFor="username">Password</label>
+                <input type="password" {...(register("password"), { required: true })} />
+                {errors.password?.type === "required" && <p>Password is required</p>}
+
                 <input type="submit" value="Login" />
             </form>
         </>

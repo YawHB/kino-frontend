@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useAuth } from "../contexts/AuthProvider";
 import { useNavigate } from "react-router-dom";
@@ -19,7 +18,7 @@ export default function Signup() {
 
         auth.signUp(newUser)
             .then(() => {
-                //TODO: Signup with username: blabla was succesfull
+                //TODO: Signup with username: blabla was successfull
                 navigate("/home", { replace: true });
             })
             .catch((e) => {
@@ -31,9 +30,12 @@ export default function Signup() {
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <input {...register("username")} placeholder="First name" />
-                <input {...register("password")} placeholder="Password" />
-                <input {...register("email")} placeholder="email" />
+                <label htmlFor="username">Username</label>
+                <input {...register("username")} />
+                <label htmlFor="username">Password</label>
+                <input type="password" {...register("password")} />
+                <label htmlFor="username">Email</label>
+                <input type="email" {...register("email")} />
                 <input type="submit" value={"Submit"} />
             </form>
         </>

@@ -4,6 +4,7 @@ import { DiVim } from "react-icons/di";
 import Logout from "./security/Logout";
 import Login from "./security/Login";
 import Signup from "./security/Signup";
+import SignInPage from "./pages/SignInPage";
 
 function App() {
     return (
@@ -12,8 +13,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<div>Startpage</div>} />
                     <Route path="/home" element={<div>Home</div>} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/signup" element={<Signup/>} />
+                    <Route path="/login" element={<SignInPage />} />
                     <Route path="/logout" element={<Logout />} />
                 </Routes>
             </PageLayout>
