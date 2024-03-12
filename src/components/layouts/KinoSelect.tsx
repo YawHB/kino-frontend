@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useKino } from "../../contexts/KinoProvidor";
+import { useKino } from "../../contexts/KinoProvider";
 import { useNavigate } from "react-router-dom";
 
 export default function KinoSelect() {

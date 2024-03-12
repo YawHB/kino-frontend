@@ -3,6 +3,8 @@ import PageLayout from "./pages/PageLayout";
 import Logout from "./security/Logout";
 import SignInPage from "./pages/SignInPage";
 import { Toaster } from "@/components/ui/toaster";
+import RequireKino from "./security/RequireKino";
+import RequireAuth from "./security/RequireAuth";
 
 function App() {
     return (
@@ -10,12 +12,27 @@ function App() {
             <PageLayout>
                 <Routes>
                     <Route path="/" element={<div>Startpage</div>} />
-                    <Route path="/home" element={<div>Home</div>} />
+                    <Route
+                        path="/home"
+                        element={
+                            <RequireKino>
+                                <div>Home</div>
+                            </RequireKino>
+                        }
+                    />
                     <Route path="/login" element={<SignInPage />} />
                     <Route path="/logout" element={<Logout />} />
+                    <Route
+                        path="/admin"
+                        element={
+                            <RequireAuth roles={["ADMIN"]}>
+                                <div>Admin</div>
+                            </RequireAuth>
+                        }
+                    />
                 </Routes>
-                <Toaster/>
             </PageLayout>
+            <Toaster />
         </>
     );
 }

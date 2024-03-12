@@ -20,7 +20,6 @@ export default function Signup() {
 
         auth.signUp(newUser)
             .then(() => {
-                //TODO: Signup with username: blabla was successfull
                 toast({
                     title: "Signed up successfully!",
                     description: "You can now login with username " + newUser.username,
@@ -28,7 +27,6 @@ export default function Signup() {
                 navigate("/home", { replace: true });
             })
             .catch((e) => {
-                //TODO: Toaster
                 console.log(e);
                 toast({
                     title: "Sign up failed!",
