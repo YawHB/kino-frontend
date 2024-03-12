@@ -10,8 +10,9 @@ export default function NavHeader() {
         <nav>
             <div className="flex justify-around items-center pt-5 pb-5 mx-auto bg-red-500 ">
                 <div className="flex gap-3">
-                    <NavLink to={"/home"}>Hjem</NavLink>
+                    <NavLink to={"/movies"}>Film</NavLink>
                     {auth.isLoggedInAs(["ADMIN"]) && <NavLink to={"/admin"}>Admin</NavLink>}
+                    {auth.isLoggedInAs(["USER"]) && <NavLink to={"/profile"}>Min Profil</NavLink>}
                 </div>
                 <h1 className="text-5xl font-sans ">Kino</h1>
 

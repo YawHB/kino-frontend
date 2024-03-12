@@ -13,7 +13,7 @@ export default function Signup() {
     const { toast } = useToast();
     const auth = useAuth();
     const navigate = useNavigate();
-    const { register, handleSubmit } = useForm<FormValues>();
+    const { register, handleSubmit, reset } = useForm<FormValues>();
 
     const onSubmit: SubmitHandler<FormValues> = (newUser) => {
         console.log(newUser);
@@ -24,7 +24,8 @@ export default function Signup() {
                     title: "Signed up successfully!",
                     description: "You can now login with username " + newUser.username,
                 });
-                navigate("/home", { replace: true });
+                //navigate("/home", { replace: true });
+                reset();
             })
             .catch((e) => {
                 console.log(e);
@@ -38,14 +39,21 @@ export default function Signup() {
 
     return (
         <>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <label htmlFor="username">Username</label>
-                <input {...register("username")} />
-                <label htmlFor="username">Password</label>
-                <input type="password" {...register("password")} />
-                <label htmlFor="username">Email</label>
-                <input type="email" {...register("email")} />
-                <input type="submit" value={"Submit"} />
+            <form className="form" onSubmit={handleSubmit(onSubmit)}>
+                <h2>Signup</h2>
+                <div className="flex flex-col gap-1">
+                    <label htmlFor="username">Username</label>
+                    <input {...register("username", { required: true })} />
+                </div>
+                <div className="flex flex-col gap-1">
+                    <label htmlFor="username">Password</label>
+                    <input type="password" {...register("password", { required: true })} />
+                </div>
+                <div className="flex flex-col gap-1">
+                    <label htmlFor="username">Email</label>
+                    <input type="email" {...register("email", { required: true })} />
+                </div>
+                <input className="bg-red-500 mt-3" type="submit" value={"Submit"} />
             </form>
         </>
     );

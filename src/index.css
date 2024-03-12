@@ -74,3 +74,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .form {
+    @apply flex flex-col p-3 bg-slate-400 gap-4 items-center justify-center h-full;
+  }
+}

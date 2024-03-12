@@ -5,18 +5,19 @@ import SignInPage from "./pages/SignInPage";
 import { Toaster } from "@/components/ui/toaster";
 import RequireKino from "./security/RequireKino";
 import RequireAuth from "./security/RequireAuth";
+import StartPage from "./pages/StartPage";
 
 function App() {
     return (
         <>
             <PageLayout>
                 <Routes>
-                    <Route path="/" element={<div>Startpage</div>} />
+                    <Route path="/" element={<StartPage/>} />
                     <Route
-                        path="/home"
+                        path="/movies"
                         element={
                             <RequireKino>
-                                <div>Home</div>
+                                <div>Film</div>
                             </RequireKino>
                         }
                     />
