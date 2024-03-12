@@ -1,6 +1,7 @@
 import { useAuth } from "../contexts/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useToast } from "@/components/ui/use-toast";
 
 type FormValues = {
     username: string;
@@ -8,6 +9,7 @@ type FormValues = {
 };
 
 export default function Login() {
+    const { toast } = useToast();
     const auth = useAuth();
     const navigate = useNavigate();
     const {
@@ -21,12 +23,18 @@ export default function Login() {
 
         auth.signIn(user)
             .then(() => {
-                //TODO: Login with username: blabla was successful
+                toast({
+                    title: "Logged in successfully!",
+                    description: "Username: " + user.username,
+                });
                 navigate("/home", { replace: true });
             })
             .catch((err) => {
-                //TODO: Toaster
-                console.log(err);
+                toast({
+                    title: "Login failed!",
+                    description: `Wrong username or password. Try again.`,
+                    variant: "destructive",
+                });
             });
     };
 
@@ -38,7 +46,7 @@ export default function Login() {
                 {errors.username?.type === "required" && <p>Username is required</p>}
 
                 <label htmlFor="username">Password</label>
-                <input type="password" {...register("password", {required: true})} />
+                <input type="password" {...register("password", { required: true })} />
                 {errors.password?.type === "required" && <p>Password is required</p>}
 
                 <input type="submit" value="Login" />

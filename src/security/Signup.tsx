@@ -1,6 +1,7 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useAuth } from "../contexts/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import { useToast } from "@/components/ui/use-toast";
 
 type FormValues = {
     username: string;
@@ -9,6 +10,7 @@ type FormValues = {
 };
 
 export default function Signup() {
+    const { toast } = useToast();
     const auth = useAuth();
     const navigate = useNavigate();
     const { register, handleSubmit } = useForm<FormValues>();
@@ -19,11 +21,20 @@ export default function Signup() {
         auth.signUp(newUser)
             .then(() => {
                 //TODO: Signup with username: blabla was successfull
+                toast({
+                    title: "Signed up successfully!",
+                    description: "You can now login with username " + newUser.username,
+                });
                 navigate("/home", { replace: true });
             })
             .catch((e) => {
                 //TODO: Toaster
                 console.log(e);
+                toast({
+                    title: "Sign up failed!",
+                    description: "username or email is already in use. Try again.",
+                    variant: "destructive",
+                });
             });
     };
 

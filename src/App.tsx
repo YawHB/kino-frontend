@@ -1,10 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 import PageLayout from "./pages/PageLayout";
-import { DiVim } from "react-icons/di";
 import Logout from "./security/Logout";
-import Login from "./security/Login";
-import Signup from "./security/Signup";
 import SignInPage from "./pages/SignInPage";
+import { Toaster } from "@/components/ui/toaster";
 
 function App() {
     return (
@@ -16,6 +14,7 @@ function App() {
                     <Route path="/login" element={<SignInPage />} />
                     <Route path="/logout" element={<Logout />} />
                 </Routes>
+                <Toaster/>
             </PageLayout>
         </>
     );
