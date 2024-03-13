@@ -16,10 +16,9 @@ export default function StartPage() {
 
     //const queryClient = useQueryClient();
 
-    // const { isSuccess, isLoading, isError, data, error } = useQuery("cinemas", getKinos);
-
-    useEffect(() => {
-        getKinos()
+    const { isLoading } = useQuery({
+        queryKey: ["kinos"],
+        queryFn: () => getKinos()
             .then((data) => setKinos(data))
             .catch(() => {
                 toast({
@@ -27,13 +26,19 @@ export default function StartPage() {
                     description: `Could not find the cinemas in our system. Please reload the webpage or try again at a later time.`,
                     variant: "destructive",
                 });
-            });
-    }, []);
+            }),
+    });
 
     const handleClick = (chosenCinema: string) => {
         setKino(chosenCinema);
         navigate("/movies", { replace: true });
     };
+
+    //if (isError) return <div>Something went wrong...</div>;
+
+    if (isLoading) return <div>Loading data...</div>;
+
+    
 
     return (
         <>
