@@ -31,10 +31,8 @@ const authProvider = {
     signUp(user_: SignupRequest) {
         const options = makeOptions("POST", user_);
         return fetch(SIGNUP_URL, options).then(handleHttpErrors);
-    }
+    },
 };
-
-
 
 export type { LoginResponse, LoginRequest, SignupRequest };
 export { authProvider };

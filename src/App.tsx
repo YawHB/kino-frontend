@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 import RequireKino from "./security/RequireKino";
 import RequireAuth from "./security/RequireAuth";
 import StartPage from "./pages/StartPage";
+import MovieListPage from "./pages/MovieListPage";
 
 function App() {
     return (
@@ -17,7 +18,7 @@ function App() {
                         path="/movies"
                         element={
                             <RequireKino>
-                                <div>Film</div>
+                                <MovieListPage/>
                             </RequireKino>
                         }
                     />
