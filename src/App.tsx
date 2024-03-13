@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 import RequireKino from "./security/RequireKino";
 import RequireAuth from "./security/RequireAuth";
 import StartPage from "./pages/StartPage";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
     return (
@@ -35,7 +36,7 @@ function App() {
                         path="/profile"
                         element={
                             <RequireAuth roles={["USER"]}>
-                                <div>My Profile</div>
+                                <ProfilePage/>
                             </RequireAuth>
                         }
                     />

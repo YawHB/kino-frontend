@@ -4,6 +4,7 @@ import { useContext } from "react";
 
 interface AuthContextType {
     username: string | null;
+    email: string | null;
     signIn: (user: User) => Promise<LoginResponse>;
     signOut: () => void;
     isLoggedIn: () => boolean;
@@ -18,12 +19,21 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
     const initialUsername = localStorage.getItem("username") || null;
     const [username, setUsername] = useState<string | null>(initialUsername);
 
+    const initialEmail = localStorage.getItem("email") || null;
+    const [email, setEmail] = useState<string | null>(initialEmail);
+
+    
+
     const signIn = async (user_: LoginRequest) => {
         return authProvider.signIn(user_).then((user) => {
+            console.log(user);
+            
             setUsername(user.username);
+            setEmail(user.email);
             localStorage.setItem("username", user.username);
             localStorage.setItem("roles", JSON.stringify(user.roles));
             localStorage.setItem("token", user.token);
+            localStorage.setItem("email", user.email);
             return user;
         });
     };
@@ -36,9 +46,12 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
 
     const signOut = () => {
         setUsername(null);
+        setEmail(null);
         localStorage.removeItem("token");
         localStorage.removeItem("username");
         localStorage.removeItem("roles");
+        localStorage.removeItem("email");
+        
     };
 
     function isLoggedIn() {
@@ -62,7 +75,7 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
         return roles?.some((r) => role.includes(r)) || false;
     }
 
-    const value = { username, isLoggedIn, isLoggedInAs, signIn, signOut, signUp };
+    const value = { username, isLoggedIn, isLoggedInAs, signIn, signOut, signUp, email };
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
