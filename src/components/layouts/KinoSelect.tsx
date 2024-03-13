@@ -19,7 +19,7 @@ export default function KinoSelect() {
 
     return (
         <>
-            <select
+            <select className="w-40 h-10 rounded-sm px-3 text-lg"
                 value={kino}
                 onChange={(e) => {
                     setKino(e.target.value);

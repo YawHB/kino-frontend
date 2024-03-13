@@ -7,6 +7,7 @@ import RequireKino from "./security/RequireKino";
 import RequireAuth from "./security/RequireAuth";
 import StartPage from "./pages/StartPage";
 import MovieListPage from "./pages/MovieListPage";
+import MovieDetailsPage from "./pages/MovieDetailsPage";
 
 function App() {
     return (
@@ -14,14 +15,14 @@ function App() {
             <PageLayout>
                 <Routes>
                     <Route path="/" element={<StartPage />} />
-                    <Route
-                        path="/movies"
-                        element={
+                    <Route path="/movies">
+                        <Route index element={
                             <RequireKino>
                                 <MovieListPage/>
                             </RequireKino>
-                        }
-                    />
+                        } />
+                        <Route path=":id" element={<MovieDetailsPage/>}/>
+                    </Route>
                     <Route path="/login" element={<SignInPage />} />
                     <Route path="/logout" element={<Logout />} />
                     <Route
