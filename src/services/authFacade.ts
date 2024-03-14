@@ -9,11 +9,13 @@ interface LoginResponse {
     username: string;
     token: string;
     roles: Array<string>;
+    email: string;
 }
 
 interface LoginRequest {
     username: string;
     password: string;
+    
 }
 
 interface SignupRequest {
