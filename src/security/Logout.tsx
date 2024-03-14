@@ -11,5 +11,5 @@ export default function Logout() {
         title: "Logged out successfully",
         description: "See you soon!",
     });
-    return <Navigate to="/home" replace={true} />;
+    return <Navigate to="/movies" replace={true} />;
 }

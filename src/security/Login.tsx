@@ -28,7 +28,7 @@ export default function Login() {
                     title: "Logged in successfully!",
                     description: "Username: " + user.username,
                 });
-                navigate("/home", { replace: true });
+                navigate("/movies", { replace: true });
             })
             .catch(() => {
                 toast({

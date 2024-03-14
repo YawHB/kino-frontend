@@ -1,17 +1,28 @@
-import { API_URL } from '@/settings';
-import { makeOptions, handleHttpErrors } from './fetchUtils';
 
-const KINO_URL = API_URL + '/cinemas';
-const MOVIES_URL = API_URL + '/movies';
+import { API_URL } from "@/settings";
+import {handleHttpErrors, makeOptions} from "./fetchUtils";
+
+const KINO_URL = API_URL + "/cinemas";
+const MOVIE_URL = API_URL + "/movies";
+
+type TMovieRequest = {
+    id: number,
+    title: string,
+    runtime: number,
+    premiere: Date,
+    poster: string
+}
+
 
 export async function getKinos() {
     return await fetch(KINO_URL).then(handleHttpErrors);
 }
 
-export async function getAllMovies() {
-    return await fetch(MOVIES_URL).then(handleHttpErrors);
+export async function getTMDBMovie(id: string) {
+    return await fetch(`${MOVIE_URL}/TMDB/${id}`).then(handleHttpErrors);
 }
 
-export async function getMovieById(id: string) {
-    return await fetch(MOVIES_URL + '/TMDB/' + id).then(handleHttpErrors);
+export async function postMovie(newMovie: TMovieRequest) {
+    const options = makeOptions("POST", newMovie);
+    return await fetch(MOVIE_URL, options).then(handleHttpErrors);
 }
