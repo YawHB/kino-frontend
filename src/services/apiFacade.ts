@@ -11,3 +11,7 @@ export async function getKinos() {
 export async function getAllMovies() {
     return await fetch(MOVIES_URL).then(handleHttpErrors);
 }
+
+export async function getMovieById(id: string) {
+    return await fetch(MOVIES_URL + '/TMDB/' + id).then(handleHttpErrors);
+}

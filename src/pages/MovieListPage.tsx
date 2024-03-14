@@ -10,7 +10,6 @@ import { useEffect, useState } from 'react';
 export default function MovieListPage() {
     const { kino } = useKino();
     const [movies, setMovies] = useState<IMovieItem[] | null>(null);
-    console.log(movies);
 
     // useEffect(() => {
     //     console.log(kino);
@@ -29,6 +28,8 @@ export default function MovieListPage() {
                     });
                 }),
     });
+
+    if (isLoading) return <div>Loading...</div>;
 
     return (
         <>

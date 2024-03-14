@@ -7,9 +7,12 @@ export interface IMovieItem {
     premiere: string;
 }
 
-// interface IMovieDetail {
-//     id: number,
-//     name: string,
-//     poster: string,
-
-// }
+export interface IMovieDetails {
+    id: number;
+    title: string;
+    overview: string;
+    runtime: number;
+    //premiere: string; //TODO: Missing on DTO from backend
+    posterPath: string;
+    genres: string[];
+}
