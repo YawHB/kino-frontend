@@ -9,8 +9,10 @@ export default function AuthStatus() {
         <>
             {auth.isLoggedIn() ? (
                 <>
-                    <p>Logged in as: {auth.username}</p>
-                    <NavLink to={"/logout"}>Logout</NavLink>
+                    <p className="font-bold">Logged in as: {auth.username}</p>
+                    <NavLink to={"/logout"}>
+                        <Button>Logout</Button>
+                    </NavLink>
                 </>
             ) : (
                 <>

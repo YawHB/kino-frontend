@@ -12,8 +12,9 @@ export default function PageLayout({ children }: Props) {
     return (
         <>
             {kino && <NavHeader />}
-
-            {children}
+            <main className="m-8">
+                {children}
+            </main>
         </>
     );
 }
