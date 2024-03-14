@@ -32,7 +32,6 @@ export default function CreateMoviePage() {
     }
 
     const handleSubmit = ({id, premiere}: {id: number, premiere: Date}) => {
-
         const newMovie = {
             id,
             premiere,
@@ -40,7 +39,9 @@ export default function CreateMoviePage() {
             runtime: TMDBMovie!.runtime,
             poster: TMDBMovie!.posterPath,
         }
-        postMovie(newMovie).then(() =>{
+
+        postMovie(newMovie)
+            .then(() =>{
             const displayDate = new Date(premiere);
             displayDate.setDate(premiere!.getDate() - 1);
             const dateString = displayDate.toLocaleString().split(", ")[0];
@@ -49,8 +50,9 @@ export default function CreateMoviePage() {
                 title: "Movie created!",
                 description: `Title: ${TMDBMovie!.title} with the premiere date: ${dateString}`,
             });
-        })
-            .catch(() => {
+
+            setTMDBMovie(null);
+        }).catch(() => {
                 toast({
                     title: "Something went wrong!",
                     description: `Could not create movie. Try again.`,
@@ -65,7 +67,7 @@ export default function CreateMoviePage() {
     return (
         <>
             <h2 className="text-center">Create movie page</h2>
-            <div className={"flex flex-wrap justify-center items-center "}>
+            <div className={"flex flex-wrap flex-col justify-center items-center gap-10"}>
                 <CreateMovieForm handleSearch={handleSearch} onSubmit={handleSubmit} isSuccess={TMDBMovie != null} />
                 {TMDBMovie && <MovieShowcase TMDBMovie={TMDBMovie}/>}
             </div>
