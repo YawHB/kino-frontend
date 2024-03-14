@@ -1,8 +1,17 @@
-import { API_URL } from "@/settings";
-import { makeOptions, handleHttpErrors } from "./fetchUtils";
+import { API_URL } from '@/settings';
+import { makeOptions, handleHttpErrors } from './fetchUtils';
 
-const KINO_URL = API_URL + "/cinemas";
+const KINO_URL = API_URL + '/cinemas';
+const MOVIES_URL = API_URL + '/movies';
 
 export async function getKinos() {
     return await fetch(KINO_URL).then(handleHttpErrors);
+}
+
+export async function getAllMovies() {
+    return await fetch(MOVIES_URL).then(handleHttpErrors);
+}
+
+export async function getMovieById(id: string) {
+    return await fetch(MOVIES_URL + '/TMDB/' + id).then(handleHttpErrors);
 }
