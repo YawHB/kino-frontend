@@ -8,6 +8,7 @@ import RequireAuth from "./security/RequireAuth";
 import StartPage from "./pages/StartPage";
 import MovieListPage from "./pages/MovieListPage";
 import MovieDetailsPage from "./pages/MovieDetailsPage";
+import Adminpage from "@/pages/AdminPage.tsx";
 
 function App() {
     return (
@@ -25,14 +26,42 @@ function App() {
                     </Route>
                     <Route path="/login" element={<SignInPage />} />
                     <Route path="/logout" element={<Logout />} />
-                    <Route
-                        path="/admin"
-                        element={
-                            <RequireAuth roles={["ADMIN"]}>
-                                <div>Admin</div>
-                            </RequireAuth>
-                        }
-                    />
+                    <Route path="/admin">
+                        <Route
+                            index
+                            element={
+                                <RequireAuth roles={["ADMIN"]}>
+                                    <Adminpage/>
+                                </RequireAuth>
+                            }
+                        />
+                        <Route
+                            path={"movie"}
+                            element={
+                                <RequireAuth roles={["ADMIN"]}>
+                                    <div>Create movie</div>
+                                </RequireAuth>
+                            }
+                        />
+                        <Route
+                            path={"screening"}
+                            element={
+                                <RequireAuth roles={["ADMIN"]}>
+                                    <div>Create screening</div>
+                                </RequireAuth>
+                            }
+                        />
+                        <Route
+                            path={"reservations"}
+                            element={
+                                <RequireAuth roles={["ADMIN"]}>
+                                    <div>See reservations</div>
+                                </RequireAuth>
+                            }
+                        />
+                    </Route>
+
+
                     <Route
                         path="/profile"
                         element={
