@@ -8,7 +8,8 @@ import RequireAuth from "./security/RequireAuth";
 import StartPage from "./pages/StartPage";
 import MovieListPage from "./pages/MovieListPage";
 import MovieDetailsPage from "./pages/MovieDetailsPage";
-import Adminpage from "@/pages/AdminPage.tsx";
+import AdminDashboardPage from "@/pages/AdminDashboardPage.tsx";
+import CreateMoviePage from "@/pages/CreateMoviePage.tsx";
 
 function App() {
     return (
@@ -31,7 +32,7 @@ function App() {
                             index
                             element={
                                 <RequireAuth roles={["ADMIN"]}>
-                                    <Adminpage/>
+                                    <AdminDashboardPage/>
                                 </RequireAuth>
                             }
                         />
@@ -39,7 +40,7 @@ function App() {
                             path={"movie"}
                             element={
                                 <RequireAuth roles={["ADMIN"]}>
-                                    <div>Create movie</div>
+                                    <CreateMoviePage/>
                                 </RequireAuth>
                             }
                         />
