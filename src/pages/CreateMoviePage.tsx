@@ -1,6 +1,6 @@
 import CreateMovieForm from "@/components/forms/CreateMovieForm.tsx";
 import {useState} from "react";
-import {IMovieDetail} from "@/models/movie.ts";
+import {IMovieDetails} from "@/models/movie.ts";
 import MovieShowcase from "@/components/core/MovieShowcase.tsx";
 import {getTMDBMovie, postMovie} from "@/services/apiFacade.ts";
 import {useToast} from "@/components/ui/use-toast.ts";
@@ -9,7 +9,7 @@ import {useToast} from "@/components/ui/use-toast.ts";
 
 
 export default function CreateMoviePage() {
-    const [TMDBMovie, setTMDBMovie] = useState<IMovieDetail | null>(null);
+    const [TMDBMovie, setTMDBMovie] = useState<IMovieDetails | null>(null);
     const { toast } = useToast();
 
     const handleSearch = (id: string) => {

@@ -1,8 +1,8 @@
-import {IMovieDetail} from "@/models/movie.ts";
+import {IMovieDetails} from "@/models/movie.ts";
 
 
 type Props = {
-    TMDBMovie: IMovieDetail,
+    TMDBMovie: IMovieDetails,
 }
 
 const POSTER_PREFIX = "https://image.tmdb.org/t/p/w200"

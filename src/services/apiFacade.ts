@@ -26,3 +26,7 @@ export async function postMovie(newMovie: TMovieRequest) {
     const options = makeOptions("POST", newMovie);
     return await fetch(MOVIE_URL, options).then(handleHttpErrors);
 }
+
+export async function getAllMovies() {
+    return await fetch(MOVIE_URL).then(handleHttpErrors);
+}

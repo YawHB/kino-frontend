@@ -28,8 +28,7 @@ export default function CreateMovieForm({handleSearch, onSubmit, isSuccess}: Pro
         register,
         handleSubmit,
         formState: { errors },
-        getValues,
-        reset
+        getValues
 
     } = useForm<FormValues>();
 

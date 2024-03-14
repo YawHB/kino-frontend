@@ -2,10 +2,9 @@ import MovieItem from '@/components/core/MovieItem';
 import { toast } from '@/components/ui/use-toast';
 import { useKino } from '@/contexts/KinoProvider';
 import { IMovieItem } from '@/models/movie';
-import { getAllMovies, getKinos } from '@/services/apiFacade';
+import { getAllMovies } from '@/services/apiFacade';
 import { useQuery } from '@tanstack/react-query';
-import { log } from 'console';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export default function MovieListPage() {
     const { kino } = useKino();

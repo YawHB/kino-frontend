@@ -1,6 +1,6 @@
 import { toast } from '@/components/ui/use-toast';
 import { IMovieDetails } from '@/models/movie';
-import { getMovieById } from '@/services/apiFacade';
+import { getTMDBMovie } from '@/services/apiFacade';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -14,7 +14,7 @@ export default function MovieDetailsPage() {
     const { isLoading } = useQuery({
         queryKey: ['movie'],
         queryFn: () =>
-            getMovieById(id!)
+            getTMDBMovie(id!)
                 .then((data) => setMovie(data))
                 .catch(() => {
                     toast({
