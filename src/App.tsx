@@ -5,11 +5,14 @@ import SignInPage from "./pages/SignInPage";
 import { Toaster } from "@/components/ui/toaster";
 import RequireKino from "./security/RequireKino";
 import RequireAuth from "./security/RequireAuth";
-import StartPage from "./pages/StartPage";
+import StartPage from "./pages/StartPage";       
+import ProfilePage from "./pages/ProfilePage";
 import MovieListPage from "./pages/MovieListPage";
 import MovieDetailsPage from "./pages/MovieDetailsPage";
 import AdminDashboardPage from "@/pages/AdminDashboardPage.tsx";
 import CreateMoviePage from "@/pages/CreateMoviePage.tsx";
+
+
 
 function App() {
     return (
@@ -18,12 +21,15 @@ function App() {
                 <Routes>
                     <Route path="/" element={<StartPage />} />
                     <Route path="/movies">
-                        <Route index element={
-                            <RequireKino>
-                                <MovieListPage/>
-                            </RequireKino>
-                        } />
-                        <Route path=":id" element={<MovieDetailsPage/>}/>
+                        <Route
+                            index
+                            element={
+                                <RequireKino>
+                                    <MovieListPage />
+                                </RequireKino>
+                            }
+                        />
+                        <Route path=":id" element={<MovieDetailsPage />} />
                     </Route>
                     <Route path="/login" element={<SignInPage />} />
                     <Route path="/logout" element={<Logout />} />
@@ -61,13 +67,11 @@ function App() {
                             }
                         />
                     </Route>
-
-
                     <Route
                         path="/profile"
                         element={
                             <RequireAuth roles={["USER"]}>
-                                <div>My Profile</div>
+                                <ProfilePage/>
                             </RequireAuth>
                         }
                     />

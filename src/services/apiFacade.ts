@@ -1,3 +1,4 @@
+
 import { API_URL } from "@/settings";
 import {handleHttpErrors, makeOptions} from "./fetchUtils";
 
@@ -11,6 +12,7 @@ type TMovieRequest = {
     premiere: Date,
     poster: string
 }
+
 
 export async function getKinos() {
     return await fetch(KINO_URL).then(handleHttpErrors);
