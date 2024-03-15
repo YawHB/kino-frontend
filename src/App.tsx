@@ -16,6 +16,7 @@ import CreateMoviePage from "@/pages/CreateMoviePage.tsx";
 
 function App() {
     return (
+
         <>
             <PageLayout>
                 <Routes>
@@ -79,6 +80,7 @@ function App() {
             </PageLayout>
             <Toaster />
         </>
+
     );
 }
 
