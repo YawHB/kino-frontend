@@ -11,8 +11,11 @@ import {
 } from "@/components/ui/select"
 
 export default function KinoSelect() {
-    const { kino, setKino } = useKino();
+    const { kino, setKino, setId, id } = useKino();
     const [kinoOptions, setKinoOptions] = useState<IKino[] | null>(null);
+
+    console.log(kino)
+    console.log(id)
 
     useEffect(() => {
         getKinos()
@@ -22,14 +25,20 @@ export default function KinoSelect() {
             });
     }, [kino]);
 
+    const handleChange = (name: string) => {
+        const selectedKino = kinoOptions?.find((k) => k.name === name) as IKino;
+        setKino(selectedKino.name);
+        setId(selectedKino.id)
+    }
+
     return (
         <>
-            <Select value={kino} onValueChange={(name) => setKino(name)}>
+            <Select value={kino} onValueChange={(name) => handleChange(name)}>
                 <SelectTrigger className="w-[180px]">
                     <SelectValue placeholder="Cinema"/>
                 </SelectTrigger>
                 <SelectContent>
-                    {kinoOptions?.map((kinoOption) => <SelectItem key={kinoOption.name} value={kinoOption.name}>{kinoOption.name}</SelectItem>)}
+                    {kinoOptions?.map((kinoOption) => <SelectItem key={kinoOption.id} value={kinoOption.name}>{kinoOption.name}</SelectItem>)}
                 </SelectContent>
             </Select>
         </>
