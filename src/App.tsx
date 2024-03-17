@@ -11,6 +11,7 @@ import MovieListPage from "./pages/MovieListPage";
 import MovieDetailsPage from "./pages/MovieDetailsPage";
 import AdminDashboardPage from "@/pages/AdminDashboardPage.tsx";
 import CreateMoviePage from "@/pages/CreateMoviePage.tsx";
+import CreateScreeningPage from "@/pages/CreateScreeningPage.tsx";
 
 
 
@@ -55,7 +56,7 @@ function App() {
                             path={"screening"}
                             element={
                                 <RequireAuth roles={["ADMIN"]}>
-                                    <div>Create screening</div>
+                                    <CreateScreeningPage/>
                                 </RequireAuth>
                             }
                         />

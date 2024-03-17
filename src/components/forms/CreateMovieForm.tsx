@@ -71,6 +71,8 @@ export default function CreateMovieForm({handleSearch, onSubmit, isSuccess}: Pro
                                     onSelect={setDate}
                                     className="rounded-md border"
                                     initialFocus
+                                    showOutsideDays
+                                    fixedWeeks
                                 />
                             </PopoverContent>
                         </Popover>
