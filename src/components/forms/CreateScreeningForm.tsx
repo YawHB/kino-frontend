@@ -1,5 +1,5 @@
 import KinoSelect from "@/components/layouts/KinoSelect.tsx";
-import { useState} from "react";
+import {useEffect, useState} from "react";
 import {IMovieItem} from "@/models/movie.ts";
 
 import MovieSelect from "@/components/core/MovieSelect.tsx";
@@ -17,6 +17,11 @@ export default function CreateScreeningForm() {
     console.log(selectedMovie)
     console.log(selectedAuditorium)
 
+    useEffect(() => {
+        setSelectedAuditorium(null);
+    }, [kino]);
+
+
     return (
         <>
             <form className="form">
@@ -32,7 +37,7 @@ export default function CreateScreeningForm() {
 
                 <div className="flex flex-col gap-1">
                     <label htmlFor="auditorium">Auditorium</label>
-                    <AuditoriumSelect/>
+                    <AuditoriumSelect setSelectedAuditorium={setSelectedAuditorium}/>
                 </div>
 
                 <div>

@@ -11,11 +11,8 @@ import {
 } from "@/components/ui/select"
 
 export default function KinoSelect() {
-    const { kino, setKino, setId, id } = useKino();
+    const { kino, setKino, setId } = useKino();
     const [kinoOptions, setKinoOptions] = useState<IKino[] | null>(null);
-
-    console.log(kino)
-    console.log(id)
 
     useEffect(() => {
         getKinos()

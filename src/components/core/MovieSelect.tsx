@@ -26,8 +26,7 @@ export default function MovieSelect({setSelectedMovie}: Props) {
     }, []);
 
     const handleChange = (id: number) => {
-        const selectedMovie = movies!.find((movie) => movie.id === id);
-        setSelectedMovie(selectedMovie!);
+        setSelectedMovie(movies?.find((movie) => movie.id === id)!);
     };
 
     return (
