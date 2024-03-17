@@ -30,3 +30,7 @@ export async function postMovie(newMovie: TMovieRequest) {
 export async function getAllMovies() {
     return await fetch(MOVIE_URL).then(handleHttpErrors);
 }
+
+export async function getMoviesByCinemaId(cinemaId: number) {
+    return await fetch(`${MOVIE_URL}/cinemas/${cinemaId}`).then(handleHttpErrors);
+}

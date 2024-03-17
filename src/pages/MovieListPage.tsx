@@ -2,7 +2,7 @@ import MovieItem from '@/components/core/MovieItem';
 import { toast } from '@/components/ui/use-toast';
 import { useKino } from '@/contexts/KinoProvider';
 import { IMovieItem } from '@/models/movie';
-import { getAllMovies } from '@/services/apiFacade';
+import { getAllMovies, getMoviesByCinemaId } from '@/services/apiFacade';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 
@@ -17,7 +17,7 @@ export default function MovieListPage() {
     const { isLoading } = useQuery({
         queryKey: ['movies'],
         queryFn: () =>
-            getAllMovies()
+            getMoviesByCinemaId()
                 .then((data) => setMovies(data))
                 .catch(() => {
                     toast({
