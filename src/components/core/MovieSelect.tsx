@@ -31,7 +31,7 @@ export default function MovieSelect({setSelectedMovie}: Props) {
 
     return (
         <>
-            <Select onValueChange={(id) => handleChange(Number(id))}>
+            <Select required={true} onValueChange={(id) => handleChange(Number(id))}>
                 <SelectTrigger className="w-[180px]">
                     <SelectValue placeholder="Select a Movie" />
                 </SelectTrigger>

@@ -14,6 +14,13 @@ type TMovieRequest = {
     poster: string
 }
 
+export type TScreeningRequest = {
+    movieId: number,
+    auditoriumId: number,
+    is3D: boolean,
+    startTime: Date
+}
+
 
 export async function getKinos() {
     return await fetch(KINO_URL).then(handleHttpErrors);
