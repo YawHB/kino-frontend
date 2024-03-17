@@ -21,6 +21,7 @@ export default function AuditoriumSelect({setSelectedAuditorium}: Props) {
     }, [id]);
 
     const handleChange = (auditoriumId: number) => {
+        console.log("Auditorium id " + auditoriumId)
         setSelectedAuditorium(auditoriums?.find((a) => a.id === auditoriumId)!);
     }
 

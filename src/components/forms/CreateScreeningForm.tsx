@@ -14,12 +14,17 @@ import {Calendar as CalendarIcon} from "lucide-react";
 import {format} from "date-fns";
 import {Calendar} from "@/components/ui/calendar.tsx";
 
+type Props = {
+    onSubmit: (newScreening: TScreeningRequest) => void;
+}
 
-export default function CreateScreeningForm() {
+
+export default function CreateScreeningForm({onSubmit}: Props) {
     const {kino} = useKino();
     const [selectedMovie, setSelectedMovie] = useState<IMovieItem | null>(null)
     const [selectedAuditorium, setSelectedAuditorium] = useState<IAuditorium | null>(null);
     const [date, setDate] = useState<Date | undefined>(undefined)
+    const [time, setTime] = useState("");
     const [is3D, setIs3D] = useState<boolean>(false);
     const fromDate = new Date(selectedMovie?.premiere as string).getTime() > new Date().getTime() ? new Date(selectedMovie?.premiere as string) : new Date()
 
@@ -34,14 +39,19 @@ export default function CreateScreeningForm() {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
+        const [hours, minutes] = time.split(":").map(Number);
+        const startTime = new Date(date as Date);
+        startTime.setHours(hours + 1, minutes);
+
         const request: TScreeningRequest = {
             movieId: selectedMovie!.id,
             auditoriumId: selectedAuditorium!.id,
-            is3D
+            is3D,
+            startTime
         }
 
+        onSubmit(request);
     }
-
 
 
     return (
@@ -93,8 +103,20 @@ export default function CreateScreeningForm() {
                     </Popover>
                 </div>
 
-                <div>
-                    Time
+                <div className="flex flex-col gap-1">
+                    <label htmlFor="time">Time</label>
+                    <input
+                        required={true}
+                        type="time"
+                        id="timeInput"
+                        name="timeInput"
+                        value={time}
+                        onChange={({target}) => setTime(target.value)}
+                        step="60"
+                        min="09:00"
+                        max="23:00"
+                    />
+                    <p>Selected time: {time}</p>
                 </div>
 
                 <div className="flex gap-5">

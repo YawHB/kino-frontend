@@ -2,9 +2,11 @@
 import { API_URL } from "@/settings";
 import {handleHttpErrors, makeOptions} from "./fetchUtils";
 import {IAuditorium} from "@/models/auditorium.ts";
+import {IScreening} from "@/models/screening.ts";
 
 const KINO_URL = API_URL + "/cinemas";
 const MOVIE_URL = API_URL + "/movies";
+const SCREENING_URL = API_URL + "/screenings";
 
 type TMovieRequest = {
     id: number,
@@ -41,4 +43,9 @@ export async function getAllMovies() {
 
 export async function getAuditoriumsByCinemaId(cinemaId: number): Promise<IAuditorium[]> {
     return await fetch(`${KINO_URL}/${cinemaId}/auditoriums`).then(handleHttpErrors);
+}
+
+export async function createScreening(newScreening: TScreeningRequest): Promise<IScreening> {
+    const options = makeOptions("POST", newScreening);
+    return await fetch(`${SCREENING_URL}`, options).then(handleHttpErrors);
 }
