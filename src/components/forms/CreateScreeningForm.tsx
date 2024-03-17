@@ -28,10 +28,6 @@ export default function CreateScreeningForm({onSubmit}: Props) {
     const [is3D, setIs3D] = useState<boolean>(false);
     const fromDate = new Date(selectedMovie?.premiere as string).getTime() > new Date().getTime() ? new Date(selectedMovie?.premiere as string) : new Date()
 
-    console.log(kino)
-    console.log(selectedMovie)
-    console.log(selectedAuditorium)
-
     useEffect(() => {
         setSelectedAuditorium(null);
     }, [kino]);
