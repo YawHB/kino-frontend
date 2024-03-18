@@ -19,7 +19,7 @@ type Props = {
 
 export default function ScreeningOverview({ movieId }: Props) {
     const [screenings, setScreenings] = useState<IScreening[] | null>(null);
-    const { id } = useKino();
+    const { id, kino } = useKino();
     const week: string[] = [];
 
     for (let i = 0; i < 7; i++) {
@@ -36,12 +36,10 @@ export default function ScreeningOverview({ movieId }: Props) {
             .catch((e) => console.log(e));
     }, []);
 
-    console.log(screenings);
-
     return (
         <>
-            <h2>Screening</h2>
-            <div className="flex gap-3">
+            <h2 className="text-3xl font-bold my-8">Visninger i {kino}</h2>
+            <section className="flex gap-3">
                 {week.map((date) => {
                     const s = screenings?.filter((screen) => {
                         const copy = new Date(screen.startTime);
@@ -49,7 +47,7 @@ export default function ScreeningOverview({ movieId }: Props) {
                     }) as IScreening[];
                     return <ScreeningDate key={date} date={date} screenings={s} />;
                 })}
-            </div>
+            </section>
         </>
     );
 }

@@ -1,4 +1,4 @@
-import ScreeningOverview from "@/components/layouts/ScreeningOverview";
+import ScreeningOverview from "@/components/layouts/Screenings/ScreeningOverview";
 import { toast } from "@/components/ui/use-toast";
 import { IMovieDetails } from "@/models/movie";
 import { getTMDBMovie } from "@/services/apiFacade";
