@@ -53,3 +53,7 @@ export async function createScreening(newScreening: TScreeningRequest): Promise<
     const options = makeOptions("POST", newScreening);
     return await fetch(`${SCREENING_URL}`, options).then(handleHttpErrors);
 }
+
+export async function getMovieScreeningsInCinema(movieId: number, cinemaId: number, startDate: string, endDate: string): Promise<IScreening[]> {
+    return await fetch(`${SCREENING_URL}?movieId=${movieId}&cinemaId=${cinemaId}&startDate=${startDate}&endDate=${endDate}`).then(handleHttpErrors);
+} 
