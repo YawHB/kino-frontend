@@ -1,35 +1,33 @@
 import MovieItem from '@/components/core/MovieItem';
 import { toast } from '@/components/ui/use-toast';
 import { useKino } from '@/contexts/KinoProvider';
+import { queryClient } from '@/main';
 import { IMovieItem } from '@/models/movie';
-import { getAllMovies } from '@/services/apiFacade';
+import { getAllMovies, getMoviesByCinemaId } from '@/services/apiFacade';
 import { useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function MovieListPage() {
-    const { kino } = useKino();
+    const { kino, id } = useKino();
     const [movies, setMovies] = useState<IMovieItem[] | null>(null);
+    console.log(movies);
 
-    // useEffect(() => {
-    //     console.log(kino);
-    // }, [kino]);
+    useEffect(() => {
+        getMoviesByCinemaId(id)
+            .then(data => {
+                console.log("fetched: " + data);
+                setMovies(data);
+            })
+            .catch(() => {
+                toast({
+                    title: "Something went wrong!",
+                    description: `Could not find the movies in our system. Please reload the webpage or try again at a later time.`,
+                    variant: "destructive",
+                });
+            });
+    }, [id]);
 
-    const { isLoading } = useQuery({
-        queryKey: ['movies'],
-        queryFn: () =>
-            getAllMovies()
-                .then((data) => setMovies(data))
-                .catch(() => {
-                    toast({
-                        title: 'Something went wrong!',
-                        description: `Could not find the movies in our system. Please reload the webpage or try again at a later time.`,
-                        variant: 'destructive',
-                    });
-                }),
-    });
-
-    if (isLoading) return <div>Loading...</div>;
-
+    
     return (
         <>
             <h1 className="my-16 text-5xl font-extrabold">Film i {kino}</h1>
