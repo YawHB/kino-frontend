@@ -7,7 +7,7 @@ interface Props {
 
 export default function ScreeningTime({ screening }: Props) {
   function handleClick() {
-    console.log(screening.id);
+    console.log(screening);
     //TODO: navigate to screening page, to reserve seats
   }
   return (
