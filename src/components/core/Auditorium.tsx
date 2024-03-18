@@ -3,9 +3,10 @@ import {getSeatsByAuditoriumId} from "@/services/apiFacade.ts";
 import {Iseat} from "@/models/seat.ts";
 import { toast } from '@/components/ui/use-toast';
 
+// probs = screening object
+
 export default function Auditorium () {
 const [seats, setSeats] = useState<Iseat[] | null>(null);
-    // fetche seats by auditorium
     useEffect(() => {
         getSeatsByAuditoriumId(1)
             .then(seats => {
@@ -21,8 +22,6 @@ const [seats, setSeats] = useState<Iseat[] | null>(null);
             });
     }, []); // figure out what to do with dependency array when not hardcoding id value
 
-    //TODO udlede max row value og max seat value
-
     const highestValues = seats?.reduce((acc, seat) => {
         if (seat.rowNum > acc.highestRowNum) {
             acc.highestRowNum = seat.rowNum;
@@ -33,8 +32,8 @@ const [seats, setSeats] = useState<Iseat[] | null>(null);
         return acc;
     }, { highestRowNum: 0, highestSeatNum: 0 });
 
-    console.log(highestValues.highestRowNum)
-    console.log(highestValues.highestSeatNum)
+    console.log(highestValues!.highestRowNum)
+    console.log(highestValues!.highestSeatNum)
 
 
 
