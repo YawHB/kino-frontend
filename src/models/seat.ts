@@ -1,7 +1,7 @@
 export interface Iseat {
     id: number,
-    rowNum: number,
-    seatNum: number,
+    rowNumber: number,
+    seatNumber: number,
     seatPricingId: string,
     auditoriumId: number
 }
