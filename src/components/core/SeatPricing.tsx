@@ -54,50 +54,80 @@ export default function SeatPricing({ seats, runtime, is3D }: Props) {
     }, []);
 
     return (
-        <>
-            <div className="font-bold">Seats</div>
-            {COWBOY_SEATS.length > 0 && (
-                <div>
-                    {COWBOY_SEATS.length}x Cowboy - {calculatSeatsPrice(COWBOY_SEATS)}kr.
-                </div>
-            )}
-            {STANDARD_SEATS.length > 0 && (
-                <div>
-                    {STANDARD_SEATS.length}x Standard - {calculatSeatsPrice(STANDARD_SEATS)}
-                    kr.
-                </div>
-            )}
-            {DELUXE_SEATS.length > 0 && (
-                <div>
-                    {DELUXE_SEATS.length}x Deluxe - {calculatSeatsPrice(DELUXE_SEATS)}kr.
-                </div>
-            )}
-            <div>Total seats price - {TOTAL_SEAT_PRICE}kr.</div>
+        <div className="min-w-30 m-5 max-w-96 rounded-sm bg-slate-300 p-5">
+            <div className="grid grid-cols-2 gap-1">
+                <div className="col-span-2 font-bold">Seats</div>
+                {COWBOY_SEATS.length > 0 && (
+                    <>
+                        <div>
+                            Cowboy <span className="opacity-40">x {COWBOY_SEATS.length}</span>
+                        </div>
+                        <div className="ml-auto">{calculatSeatsPrice(COWBOY_SEATS)},-</div>
+                    </>
+                )}
+                {STANDARD_SEATS.length > 0 && (
+                    <>
+                        <div>
+                            Standard <span className="opacity-40">x {STANDARD_SEATS.length}</span>
+                        </div>
+                        <div className="ml-auto">{calculatSeatsPrice(STANDARD_SEATS)},-</div>
+                    </>
+                )}
+                {DELUXE_SEATS.length > 0 && (
+                    <>
+                        <div>
+                            Deluxe <span className="opacity-40">x {DELUXE_SEATS.length}</span>
+                        </div>
+                        <div className="ml-auto">{calculatSeatsPrice(DELUXE_SEATS)},-</div>
+                    </>
+                )}
+                <div>Total seats price</div>
+                <div className="ml-auto">{TOTAL_SEAT_PRICE},-</div>
 
-            {seats.length > 9 && (
-                <>
-                    <div className="font-bold">Discounts</div>
-                    <div> Large group discount {calculatSeatsPrice(seats) - TOTAL_SEAT_PRICE}kr. </div>
-                </>
-            )}
+                {seats.length > 9 && (
+                    <>
+                        <div className="col-span-2 mt-3 font-bold">Discounts</div>
+                        <div> Large group discount</div>
+                        <div className="ml-auto">{calculatSeatsPrice(seats) - TOTAL_SEAT_PRICE},-</div>
+                    </>
+                )}
 
-            {(seats.length > 0 && seats.length <= 5) || is3D || RUNTIME_FEE > 0 ? <div className="font-bold">Fees</div> : null}
+                {(seats.length > 0 && seats.length <= 5) || is3D || RUNTIME_FEE > 0 ? <div className="col-span-2 mt-3 font-bold">Fees</div> : null}
 
-            {seats.length > 0 && seats.length <= 5 && <div> Small group fee - {Math.abs(calculatSeatsPrice(seats) - TOTAL_SEAT_PRICE)}kr.</div>}
+                {seats.length > 0 && seats.length <= 5 && (
+                    <>
+                        <div> Small group fee</div>
+                        <div className="ml-auto">{Math.abs(calculatSeatsPrice(seats) - TOTAL_SEAT_PRICE)},-</div>
+                    </>
+                )}
 
-            {is3D && (
-                <div>
-                    3D Fee ({seats.length} x {FEE_3D}kr.) - {FEE_3D * seats.length}kr.
-                </div>
-            )}
+                {is3D && (
+                    <>
+                        <div>
+                            3D Fee{" "}
+                            <span className="opacity-40">
+                                ({seats.length} x {FEE_3D},-)
+                            </span>
+                        </div>
+                        <div className="ml-auto">{FEE_3D * seats.length},-</div>
+                    </>
+                )}
 
-            {RUNTIME_FEE > 0 && (
-                <div>
-                    Runtime fee ({seats.length} x {RUNTIME_FEE}kr.) - {RUNTIME_FEE * seats.length}kr.
-                </div>
-            )}
-
-            <div className="font-bold">I Alt - {TOTAL_SEAT_PRICE + (FEE_3D + RUNTIME_FEE) * seats.length}kr.</div>
-        </>
+                {RUNTIME_FEE > 0 && (
+                    <>
+                        <div>
+                            Runtime fee{" "}
+                            <span className="opacity-40">
+                                ({seats.length} x {RUNTIME_FEE},-)
+                            </span>
+                        </div>
+                        <div className="ml-auto">{RUNTIME_FEE * seats.length},-</div>
+                    </>
+                )}
+                <div className="col-span-2 mt-2 border-b-2 border-slate-400"></div>
+                <div className="font-bold">Total</div>
+                <div className="ml-auto font-bold">{TOTAL_SEAT_PRICE + (FEE_3D + RUNTIME_FEE) * seats.length},-</div>
+            </div>
+        </div>
     );
 }
