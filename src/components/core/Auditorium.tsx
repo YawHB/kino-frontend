@@ -5,11 +5,13 @@ import { toast } from '@/components/ui/use-toast';
 import Seat from "@/components/core/Seat.tsx";
 import { IScreening } from "@/models/screening";
 
+
 // probs = screening object
 type Props = {
   screening: IScreening;
     handleSeatClick: (seat: Iseat) => void;
 };
+
 
 export default function Auditorium({screening, handleSeatClick}: Props) {
     const [seats, setSeats] = useState<Iseat[] | null>(null);
@@ -41,6 +43,7 @@ export default function Auditorium({screening, handleSeatClick}: Props) {
     //TODO: fetch reservations ud fra screenings id (ikke relevant endnu)
 
     return (
+
         // cols = seatsPerRow
         // rows = numberOfRows 
         <>
@@ -50,7 +53,6 @@ export default function Auditorium({screening, handleSeatClick}: Props) {
                 </div>
             }
         </>
-
     )
 }
 // overordnet auditorium component

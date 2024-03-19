@@ -11,6 +11,7 @@ const ScreeningPage = () => {
   function handleSeatClick(seat: Iseat) {
     console.log("seat: " + seat);
 
+
     if (selectedSeats.includes(seat)) {
       const filteredSeats = selectedSeats.filter(
         (currSeat) => currSeat !== seat,

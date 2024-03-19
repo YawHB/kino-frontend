@@ -5,3 +5,4 @@ export interface Iseat {
     seatPricing: {name: string, price: number},
     auditoriumId: number
 }
+
