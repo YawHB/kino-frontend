@@ -36,9 +36,6 @@ export default function SeatPricing({ seats, runtime, is3D }: Props) {
     if (seat.seatPricing.name === "deluxe") DELUXE_SEATS.push(seat);
   }
 
-  console.log("Cowboys length");
-  console.log(COWBOY_SEATS.length);
-
   return (
     <>
       <div className="font-bold">Seats</div>
@@ -60,6 +57,7 @@ export default function SeatPricing({ seats, runtime, is3D }: Props) {
         </div>
       )}
       <div>Total seats price - {TOTAL_SEAT_PRICE}kr.</div>
+      <div className="font-bold">Fees</div>
       {DUMMY_MOVIE_IS3D && (
         <div>
           3D Fee ({seats.length} x {FEE_3D}kr.) - {FEE_3D * seats.length}kr.
@@ -73,8 +71,8 @@ export default function SeatPricing({ seats, runtime, is3D }: Props) {
         </div>
       )}
 
-      <div>
-        I Alt - {TOTAL_SEAT_PRICE + (FEE_3D + RUNTIME_FEE) * seats.length}kr
+      <div className="font-bold">
+        I Alt - {TOTAL_SEAT_PRICE + (FEE_3D + RUNTIME_FEE) * seats.length}kr.
       </div>
     </>
   );
