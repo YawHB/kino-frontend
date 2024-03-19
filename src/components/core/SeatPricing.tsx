@@ -15,20 +15,22 @@ function calculatSeatsPrice(seats: Iseat[]) {
 }
 
 export default function SeatPricing({ seats, runtime, is3D }: Props) {
-    const [priceAdjustments, setPriceAdjustments] = useState<IPriceAdjustment[] | null>(null);
+    const [priceAdjustments, setPriceAdjustments] = useState<IPriceAdjustment | null>(null);
+    const { smallGroup = 0, largeGroup = 0, feeRuntime = 0, fee3D = 0 } = priceAdjustments?.priceAdjustments || {};
 
     const COWBOY_SEATS: Iseat[] = [];
     const STANDARD_SEATS: Iseat[] = [];
     const DELUXE_SEATS: Iseat[] = [];
+    
     console.log(seats);
 
-    const GROUP_PRICING_ADJUSTMENT = seats.length <= 5 ? 1.05 : seats.length > 10 ? 0.93 : 1;
+    const GROUP_PRICING_ADJUSTMENT = seats.length <= 5 ? smallGroup : seats.length > 10 ? largeGroup : 1;
 
-    const TOTAL_SEAT_PRICE = calculatSeatsPrice(seats) * GROUP_PRICING_ADJUSTMENT;
+    const TOTAL_SEAT_PRICE = calculatSeatsPrice(seats) * GROUP_PRICING_ADJUSTMENT!;
 
-    const RUNTIME_FEE = runtime >= 170 ? 10 : 0;
+    const RUNTIME_FEE = runtime >= 170 ? feeRuntime : 0;
 
-    const FEE_3D = is3D ? 15 : 0;
+    const FEE_3D = is3D ? fee3D : 0;
 
     for (const seat of seats) {
         if (seat.seatPricing.name === "cowboy") COWBOY_SEATS.push(seat);
@@ -50,9 +52,6 @@ export default function SeatPricing({ seats, runtime, is3D }: Props) {
                 });
             });
     }, []);
-
-    const FEE3D = priceAdjustments?.find((price) => price.name === "fee3D")?.adjustment;
-    console.log("3D FEE", FEE3D);
 
     return (
         <>

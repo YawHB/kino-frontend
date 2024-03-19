@@ -1,4 +1,8 @@
 export interface IPriceAdjustment {
-    name: string;
-    adjustment: number;
+    priceAdjustments: {
+        smallGroup: number;
+        largeGroup: number;
+        feeRuntime: number;
+        fee3D: number;
+    };
 }
