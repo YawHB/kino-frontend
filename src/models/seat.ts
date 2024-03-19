@@ -2,6 +2,6 @@ export interface Iseat {
     id: number,
     rowNumber: number,
     seatNumber: number,
-    seatPricingId: string,
+    seatPricing: {name: string, price: number},
     auditoriumId: number
 }
