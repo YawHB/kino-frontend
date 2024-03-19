@@ -5,6 +5,7 @@ const ScreeningPage = () => {
     return (
         <>
             <h1>Screening Page</h1>
+            
             <Auditorium />
         </>
     );

@@ -3,6 +3,7 @@ import {getSeatsByAuditoriumId} from "@/services/apiFacade.ts";
 import {Iseat} from "@/models/seat.ts";
 import { toast } from '@/components/ui/use-toast';
 import Seat from "@/components/core/Seat.tsx";
+import SeatPricing from "./SeatPricing";
 
 // probs = screening object
 
@@ -15,15 +16,15 @@ function handleSeatClick(seat: Iseat) {
     console.log("seat:");
     console.log(seat)
     console.log("reserved seats:")
-    console.log(reservedSeats)
-
+    
     if(reservedSeats.some((currSeat) => currSeat === seat)) {
         const filteredSeats = reservedSeats.filter((currSeat) => currSeat !== seat);
         setReservedSeats(prev => filteredSeats);
     } else {
         setReservedSeats(prev => [...prev, seat])
     }
-
+    
+    // console.log(reservedSeats)
 }
 
 
@@ -57,10 +58,13 @@ function handleSeatClick(seat: Iseat) {
         // cols = maxSeats
         // rows = maxRows 
         // DO NOT TOUCH THIS - IT WILL BREAK MAGICALLY (not a joke)
-        <div className={`grid grid-cols-${seatsPerRow} gap-1 w-1/3 mx-auto`}> 
-            {seats?.map((seat, index) => <Seat seat={seat} onSeatClick={handleSeatClick}/>)}
-         
-        </div>
+        <>
+            <SeatPricing seats={reservedSeats}/>
+            <div className={`grid grid-cols-${seatsPerRow} gap-1 w-1/3 mx-auto`}>
+                {seats?.map((seat, index) => <Seat seat={seat} onSeatClick={handleSeatClick}/>)}
+            
+            </div>
+        </>
     )
 }
 // overordnet auditorium component
