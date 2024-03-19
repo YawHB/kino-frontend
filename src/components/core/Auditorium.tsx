@@ -7,29 +7,13 @@ import { IScreening } from "@/models/screening";
 
 // probs = screening object
 type Props = {
-    screening: IScreening;
-}
+  screening: IScreening;
+    handleSeatClick: (seat: Iseat) => void;
+};
 
-export default function Auditorium({screening}: Props) {
+export default function Auditorium({screening, handleSeatClick}: Props) {
     const [seats, setSeats] = useState<Iseat[] | null>(null);
     const [reservedSeats, setReservedSeats] = useState<Iseat[] | null>(null);
-    const [selectedSeats, setSelectedSeats] = useState<Iseat[]>([]);
-
-    function handleSeatClick(seat: Iseat) {
-        
-        if(selectedSeats.includes(seat)) {
-            const filteredSeats = selectedSeats.filter((currSeat) => currSeat !== seat);
-            setSelectedSeats(filteredSeats);
-        } else {
-            setSelectedSeats(prev => [...prev, seat])
-        }
-        //TODO Remove Dev logs
-        console.log("seat:");
-        console.log(seat)
-    }
-
-        console.log("Selected seats:")
-        console.log(selectedSeats)
 
     useEffect(() => {
         getSeatsByAuditoriumId(screening.auditorium.id)
@@ -50,9 +34,6 @@ export default function Auditorium({screening}: Props) {
     const numberOfRows = lastSeat?.rowNumber;
     const seatsPerRow = lastSeat?.seatNumber;
 
-
-
-
     // console.log(`numberOfRows: ${numberOfRows}`);
     // console.log(`seatsPerRow: ${seatsPerRow}`);
 
@@ -62,7 +43,6 @@ export default function Auditorium({screening}: Props) {
     return (
         // cols = seatsPerRow
         // rows = numberOfRows 
-        // DO NOT TOUCH THIS - IT WILL BREAK MAGICALLY (not a joke)
         <>
             {seats &&
                 <div style={{display: "grid", gridTemplateColumns: `repeat(${seatsPerRow}, minmax(0, 1fr))`, gridGap: "0.25rem", width: "33.333333%", marginLeft: "auto", marginRight: "auto"}}> 
@@ -76,12 +56,3 @@ export default function Auditorium({screening}: Props) {
 // overordnet auditorium component
 // grid(rows, seatPerRow)
 // seat components i grid
-
-
-
-
-/*
-<div className={`grid grid-cols-${seatsPerRow} gap-1 w-1/3 mx-auto`}> 
-                    {seats?.map((seat) => <Seat key={seat.id} seat={seat} onSeatClick={handleSeatClick}/>)}
-                </div>
-*/
