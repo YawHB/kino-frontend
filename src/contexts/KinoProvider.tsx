@@ -1,4 +1,4 @@
-import React, { ReactNode, SetStateAction, createContext, useContext, useState } from "react";
+import React, { ReactNode, SetStateAction, createContext, useContext, useEffect, useState } from "react";
 
 type KinoContextType = {
     kino: string,
@@ -10,8 +10,14 @@ type KinoContextType = {
 const KinoContext = createContext<KinoContextType>(null!);
 
 export default function KinoProvider({ children }: { children: ReactNode }) {
-    const [kino, setKino] = useState("");
-    const [id, setId] = useState<number>(0)
+    const [kino, setKino] = useState(localStorage.getItem("kinoName") || "");
+    const [id, setId] = useState<number>(parseInt(localStorage.getItem("kinoId") || "0"))
+
+    // add selected kino to localStorage
+    useEffect(() => {
+        localStorage.setItem("kinoName", kino)
+        localStorage.setItem("kinoId", id.toString())
+    }, [kino, id])
     
     return (
         <KinoContext.Provider value={{ kino, setKino, id, setId }}>{children}</KinoContext.Provider>

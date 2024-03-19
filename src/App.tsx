@@ -12,6 +12,7 @@ import MovieDetailsPage from "./pages/MovieDetailsPage";
 import AdminDashboardPage from "@/pages/AdminDashboardPage.tsx";
 import CreateMoviePage from "@/pages/CreateMoviePage.tsx";
 import CreateScreeningPage from "@/pages/CreateScreeningPage.tsx";
+import ScreeningPage from "@/pages/ScreeningPage.tsx";
 
 
 
@@ -77,6 +78,10 @@ function App() {
                             </RequireAuth>
                         }
                     />
+                    <Route path="/screening"
+                           element={<RequireAuth roles={["USER"]}>
+                               <ScreeningPage/>
+                           </RequireAuth>} />
                 </Routes>
             </PageLayout>
             <Toaster />
