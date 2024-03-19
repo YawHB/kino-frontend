@@ -1,11 +1,13 @@
 import { Iseat } from "@/models/seat";
-import React from "react";
-import { SiUbereats } from "react-icons/si";
+import { getAllPriceAdjustments } from "@/services/apiFacade";
+import React, { useEffect, useState } from "react";
+import { toast } from "../ui/use-toast";
+import { IPriceAdjustment } from "@/models/priceAdjustment";
 
 interface Props {
     seats: Iseat[];
-    runtime?: number;
-    is3D?: boolean;
+    runtime: number;
+    is3D: boolean;
 }
 
 function calculatSeatsPrice(seats: Iseat[]) {
@@ -13,27 +15,44 @@ function calculatSeatsPrice(seats: Iseat[]) {
 }
 
 export default function SeatPricing({ seats, runtime, is3D }: Props) {
+    const [priceAdjustments, setPriceAdjustments] = useState<IPriceAdjustment[] | null>(null);
+
     const COWBOY_SEATS: Iseat[] = [];
     const STANDARD_SEATS: Iseat[] = [];
     const DELUXE_SEATS: Iseat[] = [];
     console.log(seats);
 
-    const DUMMY_MOVIE_RUNTIME = 180;
-    const DUMMY_MOVIE_IS3D = true;
-
-    const GROUP_PRICING_ADJUSTMENT = seats.length <= 5 ? 1.05 : seats.length > 10 ? 0.97 : 1;
+    const GROUP_PRICING_ADJUSTMENT = seats.length <= 5 ? 1.05 : seats.length > 10 ? 0.93 : 1;
 
     const TOTAL_SEAT_PRICE = calculatSeatsPrice(seats) * GROUP_PRICING_ADJUSTMENT;
 
-    const RUNTIME_FEE = DUMMY_MOVIE_RUNTIME >= 170 ? 10 : 0;
+    const RUNTIME_FEE = runtime >= 170 ? 10 : 0;
 
-    const FEE_3D = DUMMY_MOVIE_IS3D ? 15 : 0;
+    const FEE_3D = is3D ? 15 : 0;
 
     for (const seat of seats) {
         if (seat.seatPricing.name === "cowboy") COWBOY_SEATS.push(seat);
         if (seat.seatPricing.name === "standard") STANDARD_SEATS.push(seat);
         if (seat.seatPricing.name === "deluxe") DELUXE_SEATS.push(seat);
     }
+
+    useEffect(() => {
+        getAllPriceAdjustments()
+            .then((data) => {
+                console.log("fetched: ", data);
+                setPriceAdjustments(data);
+            })
+            .catch(() => {
+                toast({
+                    title: "Something went wrong!",
+                    description: `Could not find the price adjustments in our system. Please reload the webpage or try again at a later time.`,
+                    variant: "destructive",
+                });
+            });
+    }, []);
+
+    const FEE3D = priceAdjustments?.find((price) => price.name === "fee3D")?.adjustment;
+    console.log("3D FEE", FEE3D);
 
     return (
         <>
@@ -56,7 +75,7 @@ export default function SeatPricing({ seats, runtime, is3D }: Props) {
             )}
             <div>Total seats price - {TOTAL_SEAT_PRICE}kr.</div>
             <div className="font-bold">Fees</div>
-            {DUMMY_MOVIE_IS3D && (
+            {is3D && (
                 <div>
                     3D Fee ({seats.length} x {FEE_3D}kr.) - {FEE_3D * seats.length}kr.
                 </div>
