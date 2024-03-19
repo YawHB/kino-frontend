@@ -3,33 +3,22 @@ import {getSeatsByAuditoriumId} from "@/services/apiFacade.ts";
 import {Iseat} from "@/models/seat.ts";
 import { toast } from '@/components/ui/use-toast';
 import Seat from "@/components/core/Seat.tsx";
+import { IScreening } from "@/models/screening";
+
 
 // probs = screening object
-
-export default function Auditorium () {
-const [seats, setSeats] = useState<Iseat[] | null>(null);
-const [reservedSeats, setReservedSeats] = useState<Iseat[]>([])
-
-
-function handleSeatClick(seat: Iseat) {
-    console.log("seat:");
-    console.log(seat)
-    console.log("reserved seats:")
-    console.log(reservedSeats)
-
-    if(reservedSeats.some((currSeat) => currSeat === seat)) {
-        const filteredSeats = reservedSeats.filter((currSeat) => currSeat !== seat);
-        setReservedSeats(prev => filteredSeats);
-    } else {
-        setReservedSeats(prev => [...prev, seat])
-    }
-
-}
+type Props = {
+  screening: IScreening;
+    handleSeatClick: (seat: Iseat) => void;
+};
 
 
+export default function Auditorium({screening, handleSeatClick}: Props) {
+    const [seats, setSeats] = useState<Iseat[] | null>(null);
+    const [reservedSeats, setReservedSeats] = useState<Iseat[] | null>(null);
 
     useEffect(() => {
-        getSeatsByAuditoriumId(6)
+        getSeatsByAuditoriumId(screening.auditorium.id)
             .then(seats => {
                 console.log(seats);
                 setSeats(seats)
@@ -47,20 +36,23 @@ function handleSeatClick(seat: Iseat) {
     const numberOfRows = lastSeat?.rowNumber;
     const seatsPerRow = lastSeat?.seatNumber;
 
-    console.log(`numberOfRows: ${numberOfRows}`);
-    console.log(`seatsPerRow: ${seatsPerRow}`);
+    // console.log(`numberOfRows: ${numberOfRows}`);
+    // console.log(`seatsPerRow: ${seatsPerRow}`);
+
     
     //TODO: fetch reservations ud fra screenings id (ikke relevant endnu)
 
-
     return (
-        // cols = maxSeats
-        // rows = maxRows 
-        // DO NOT TOUCH THIS - IT WILL BREAK MAGICALLY (not a joke)
-        <div className={`grid grid-cols-${seatsPerRow} gap-1 w-1/3 mx-auto`}> 
-            {seats?.map((seat, index) => <Seat seat={seat} onSeatClick={handleSeatClick}/>)}
-         
-        </div>
+
+        // cols = seatsPerRow
+        // rows = numberOfRows 
+        <>
+            {seats &&
+                <div style={{display: "grid", gridTemplateColumns: `repeat(${seatsPerRow}, minmax(0, 1fr))`, gridGap: "0.25rem", width: "33.333333%", marginLeft: "auto", marginRight: "auto"}}> 
+                    {seats?.map((seat) => <Seat key={seat.id} seat={seat} onSeatClick={handleSeatClick}/>)}
+                </div>
+            }
+        </>
     )
 }
 // overordnet auditorium component
