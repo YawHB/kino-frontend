@@ -27,7 +27,7 @@ export default function ScreeningOverview({ movieId }: Props) {
     )
       .then((data) => setScreenings(data))
       .catch((e) => console.log(e));
-  }, []);
+  }, [kino]);
 
   return (
     <>
