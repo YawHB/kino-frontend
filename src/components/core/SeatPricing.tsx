@@ -21,10 +21,10 @@ export default function SeatPricing({ seats, runtime, is3D }: Props) {
     const COWBOY_SEATS: Iseat[] = [];
     const STANDARD_SEATS: Iseat[] = [];
     const DELUXE_SEATS: Iseat[] = [];
-    
+
     console.log(seats);
 
-    const GROUP_PRICING_ADJUSTMENT = seats.length <= 5 ? smallGroup : seats.length > 10 ? largeGroup : 1;
+    const GROUP_PRICING_ADJUSTMENT = seats.length <= 5 ? smallGroup : seats.length >= 10 ? largeGroup : 1;
 
     const TOTAL_SEAT_PRICE = calculatSeatsPrice(seats) * GROUP_PRICING_ADJUSTMENT!;
 
@@ -73,7 +73,18 @@ export default function SeatPricing({ seats, runtime, is3D }: Props) {
                 </div>
             )}
             <div>Total seats price - {TOTAL_SEAT_PRICE}kr.</div>
-            <div className="font-bold">Fees</div>
+
+            {seats.length > 9 && (
+                <>
+                    <div className="font-bold">Discounts</div>
+                    <div> Large group discount {calculatSeatsPrice(seats) - TOTAL_SEAT_PRICE}kr. </div>
+                </>
+            )}
+
+            {(seats.length > 0 && seats.length <= 5) || is3D || RUNTIME_FEE > 0 ? <div className="font-bold">Fees</div> : null}
+
+            {seats.length > 0 && seats.length <= 5 && <div> Small group fee - {Math.abs(calculatSeatsPrice(seats) - TOTAL_SEAT_PRICE)}kr.</div>}
+
             {is3D && (
                 <div>
                     3D Fee ({seats.length} x {FEE_3D}kr.) - {FEE_3D * seats.length}kr.
