@@ -50,10 +50,19 @@ const ScreeningPage = () => {
 
     return (
         <>
-            <h1>Screening Page</h1>
-			<SeatPricing seats={selectedSeats} is3D={screening.is3D} runtime={screening.movie.runtime} />
-            <Auditorium screening={screening} handleSeatClick={handleSeatClick} />
-            <Link to={`${screening.id}`} state={selectedSeats}><Button>Continue</Button></Link>
+            <h1 className={"text-center my-4"}>Screening Page</h1>
+            <div className={"flex flex-wrap justify-center gap-5"}>
+
+                <Auditorium screening={screening} handleSeatClick={handleSeatClick}/>
+
+                <div className={"flex flex-col gap-5"}>
+                    <SeatPricing seats={selectedSeats} is3D={screening.is3D} runtime={screening.movie.runtime}/>
+                    <div className={"flex justify-end"}>
+                        <Link to={`${screening.id}`} state={selectedSeats}><Button>Continue</Button></Link>
+                    </div>
+                </div>
+            </div>
+
         </>
     );
 };
