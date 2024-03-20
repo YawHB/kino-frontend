@@ -9,6 +9,7 @@ const KINO_URL = API_URL + "/cinemas";
 const MOVIE_URL = API_URL + "/movies";
 const SCREENING_URL = API_URL + "/screenings";
 const SEAT_URL = API_URL + "/seats";
+const PRICEADJUSTMENT_URL = API_URL + "/priceAdjustments";
 
 type TMovieRequest = {
     id: number,
@@ -64,6 +65,11 @@ export async function getMovieScreeningsInCinema(movieId: number, cinemaId: numb
     return await fetch(`${SCREENING_URL}?movieId=${movieId}&cinemaId=${cinemaId}&startDate=${startDate}&endDate=${endDate}`).then(handleHttpErrors);
 }
 
+
+export async function getAllPriceAdjustments() {
+    return await fetch(PRICEADJUSTMENT_URL).then(handleHttpErrors);
+}
 export async function getReservedSeatsByScreeningId(screeningId: number): Promise<Iseat[]> {
     return await fetch(`${SEAT_URL}/screening/${screeningId}`).then(handleHttpErrors);
+
 }
