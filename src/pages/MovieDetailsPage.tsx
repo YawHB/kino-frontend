@@ -30,22 +30,26 @@ export default function MovieDetailsPage() {
 
     return (
         <>
-            <div className="flex m-auto">
-                <div className=" w-[600px]">
+            <div className="flex gap-10">
+                <div className=" w-[70%]">
                     <img className="rounded-md w-full object-cover" src={POSTER_URL + movie?.posterPath} alt="poster" />
                 </div>
-                <div className="p-5">
-                    <h1 className="text-5xl mb-5 ">{movie?.title}</h1>
-                    {/* <p className="text-2xl">Description </p> */}
-                    <p className="font-medium"> {movie?.overview}</p>
-                    <p className="font-extralight">Runtime</p>
-                    <p className="font-bold">{movie?.runtime}</p>
-                    <p className="font-extralight">Genres </p>
-                    <p className="font-bold">{movie?.genres.map((genre) => genre).join(", ")}</p>
+
+                <div className={"flex flex-col gap-10"}>
+                    <div>
+                        <h1 className="text-5xl mb-5 ">{movie?.title}</h1>
+                        {/* <p className="text-2xl">Description </p> */}
+                        <p className="font-medium"> {movie?.overview}</p>
+                        <p className="font-extralight">Runtime</p>
+                        <p className="font-bold">{movie?.runtime}</p>
+                        <p className="font-extralight">Genres </p>
+                        <p className="font-bold">{movie?.genres.map((genre) => genre).join(", ")}</p>
+                    </div>
+                    <div>
+                        <ScreeningOverview movieId={Number(id as string)}/>
+                    </div>
                 </div>
-            </div>
-            <div>
-                <ScreeningOverview movieId={Number(id as string)} />
+
             </div>
         </>
     );
