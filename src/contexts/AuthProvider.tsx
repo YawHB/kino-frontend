@@ -15,7 +15,6 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType>(null!);
 
 export default function AuthProvider({ children }: { children: ReactNode }) {
-    //We use this to distinguish between being logged in or not
     const initialUsername = localStorage.getItem("username") || null;
     const [username, setUsername] = useState<string | null>(initialUsername);
 
@@ -26,8 +25,6 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
 
     const signIn = async (user_: LoginRequest) => {
         return authProvider.signIn(user_).then((user) => {
-            console.log(user);
-            
             setUsername(user.username);
             setEmail(user.email);
             localStorage.setItem("username", user.username);
