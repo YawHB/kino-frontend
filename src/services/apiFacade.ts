@@ -10,7 +10,7 @@ const KINO_URL = API_URL + "/cinemas";
 const MOVIE_URL = API_URL + "/movies";
 const SCREENING_URL = API_URL + "/screenings";
 const SEAT_URL = API_URL + "/seats";
-const PRICEADJUSTMENT_URL = API_URL + "/priceAdjustments";
+const PRICEADJUSTMENT_URL = API_URL + "/priceadjustments";
 const RESERVATION_URL = API_URL + "/reservations"
 
 type TMovieRequest = {
