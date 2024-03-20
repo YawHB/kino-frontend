@@ -10,8 +10,6 @@ const ScreeningPage = () => {
     const [selectedSeats, setSelectedSeats] = useState<Iseat[]>([]);
 
     function handleSeatClick(seat: Iseat) {
-        console.log("seat: " + seat);
-
         if (selectedSeats.includes(seat)) {
             const filteredSeats = selectedSeats.filter((currSeat) => currSeat !== seat);
             setSelectedSeats(filteredSeats);
@@ -20,8 +18,7 @@ const ScreeningPage = () => {
         }
     }
 
-    console.log("Selected seats: " + selectedSeats);
-
+    console.log(selectedSeats);
     console.log(screening);
 
     return (

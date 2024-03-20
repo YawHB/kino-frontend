@@ -63,3 +63,7 @@ export async function getSeatsByAuditoriumId(auditoriumId: number): Promise<Isea
 export async function getMovieScreeningsInCinema(movieId: number, cinemaId: number, startDate: string, endDate: string): Promise<IScreening[]> {
     return await fetch(`${SCREENING_URL}?movieId=${movieId}&cinemaId=${cinemaId}&startDate=${startDate}&endDate=${endDate}`).then(handleHttpErrors);
 }
+
+export async function getReservedSeatsByScreeningId(screeningId: number): Promise<Iseat[]> {
+    return await fetch(`${SEAT_URL}/screening/${screeningId}`).then(handleHttpErrors);
+}
