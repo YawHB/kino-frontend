@@ -84,3 +84,7 @@ export async function createReservation(request: TReservationRequest): Promise<I
     const options = makeOptions("POST", request, true);
     return await fetch(RESERVATION_URL, options).then(handleHttpErrors);
 }
+
+export async function getReservationsByUsername(username: string) {
+    return await fetch(`${RESERVATION_URL}/users/${username}`).then(handleHttpErrors);
+}
