@@ -30,8 +30,6 @@ export default function Auditorium({ screening, handleSeatClick }: Props) {
 
         getReservedSeatsByScreeningId(screening.id)
             .then((reserved) => {
-                console.log(reserved);
-
                 setReservedSeats(reserved);
             })
             .catch(() => {
@@ -41,16 +39,11 @@ export default function Auditorium({ screening, handleSeatClick }: Props) {
                     variant: "destructive",
                 });
             });
-    }, []); // figure out what to do with dependency array when not hardcoding id value
+    }, []);
 
     const lastSeat = seats?.[seats.length - 1];
     const numberOfRows = lastSeat?.rowNumber;
     const seatsPerRow = lastSeat?.seatNumber;
-
-    // console.log(`numberOfRows: ${numberOfRows}`);
-    // console.log(`seatsPerRow: ${seatsPerRow}`);
-
-    //TODO: fetch reservations ud fra screenings id (ikke relevant endnu)
 
     return (
         // cols = seatsPerRow
@@ -63,8 +56,6 @@ export default function Auditorium({ screening, handleSeatClick }: Props) {
                         gridTemplateColumns: `repeat(${seatsPerRow}, minmax(0, 1fr))`,
                         gridGap: "0.25rem",
                         width: "33.333333%",
-                        /*marginLeft: "auto",
-                        marginRight: "auto",*/
                     }}
                 >
                     {seats?.map((seat) => (
@@ -80,8 +71,3 @@ export default function Auditorium({ screening, handleSeatClick }: Props) {
         </>
     );
 }
-// overordnet auditorium component
-// grid(rows, seatPerRow)
-// seat components i grid
-
-//reservedSeats?.includes(seat)

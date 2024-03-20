@@ -10,12 +10,10 @@ import { useEffect, useState } from 'react';
 export default function MovieListPage() {
     const { kino, id } = useKino();
     const [movies, setMovies] = useState<IMovieItem[] | null>(null);
-    console.log(movies);
 
     useEffect(() => {
         getMoviesByCinemaId(id)
             .then(data => {
-                console.log("fetched: " + data);
                 setMovies(data);
             })
             .catch(() => {

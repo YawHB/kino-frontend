@@ -13,11 +13,9 @@ export default function AuditoriumSelect({setSelectedAuditorium}: Props) {
     const {id} = useKino()
 
     useEffect(() => {
-        console.log(id)
         getAuditoriumsByCinemaId(id)
             .then((auditoriums) => setAuditoriums(auditoriums))
             .catch(() => console.log("toast"))
-
     }, [id]);
 
     const handleChange = (auditoriumId: number) => {

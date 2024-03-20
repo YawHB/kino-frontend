@@ -117,7 +117,7 @@ export default function CreateScreeningForm({onSubmit}: Props) {
 
                 <div className="flex gap-5">
                     <label htmlFor="is3d">3D</label>
-                    <input required={true} type="checkbox" checked={is3D} onChange={() => setIs3D(prev => !prev)}/>
+                    <input type="checkbox" checked={is3D} onChange={() => setIs3D(prev => !prev)}/>
                 </div>
 
                 <input className={"hover:cursor-pointer"} type="submit" value="Submit"/>

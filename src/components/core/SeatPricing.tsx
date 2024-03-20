@@ -22,8 +22,6 @@ export default function SeatPricing({ seats, runtime, is3D }: Props) {
     const STANDARD_SEATS: Iseat[] = [];
     const DELUXE_SEATS: Iseat[] = [];
 
-    console.log(seats);
-
     const GROUP_PRICING_ADJUSTMENT = seats.length <= 5 ? smallGroup : seats.length >= 10 ? largeGroup : 1;
 
     const TOTAL_SEAT_PRICE = calculatSeatsPrice(seats) * GROUP_PRICING_ADJUSTMENT!;
@@ -41,7 +39,6 @@ export default function SeatPricing({ seats, runtime, is3D }: Props) {
     useEffect(() => {
         getAllPriceAdjustments()
             .then((data) => {
-                console.log("fetched: ", data);
                 setPriceAdjustments(data);
             })
             .catch(() => {
