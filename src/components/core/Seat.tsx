@@ -11,13 +11,13 @@ type Props = {
 
 function getColor(isSelected: boolean, disabled: boolean) {
     if (disabled) {
-        return "#ff0000"
+        return "#e73333"
     } 
 
     if (isSelected) {
-        return "#0000ff"
+        return "#1849ec"
     } else {
-        return "#000000"
+        return "#18c718"
     }
 }
 
