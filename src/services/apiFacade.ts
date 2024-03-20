@@ -65,6 +65,11 @@ export async function getMovieScreeningsInCinema(movieId: number, cinemaId: numb
     return await fetch(`${SCREENING_URL}?movieId=${movieId}&cinemaId=${cinemaId}&startDate=${startDate}&endDate=${endDate}`).then(handleHttpErrors);
 }
 
+
 export async function getAllPriceAdjustments() {
     return await fetch(PRICEADJUSTMENT_URL).then(handleHttpErrors);
+}
+export async function getReservedSeatsByScreeningId(screeningId: number): Promise<Iseat[]> {
+    return await fetch(`${SEAT_URL}/screening/${screeningId}`).then(handleHttpErrors);
+
 }
