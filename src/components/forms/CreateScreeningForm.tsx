@@ -104,8 +104,6 @@ export default function CreateScreeningForm({onSubmit}: Props) {
                     <input
                         required={true}
                         type="time"
-                        id="timeInput"
-                        name="timeInput"
                         value={time}
                         onChange={({target}) => setTime(target.value)}
                         step="60"
