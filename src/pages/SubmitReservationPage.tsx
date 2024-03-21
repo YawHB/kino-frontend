@@ -1,6 +1,6 @@
 import { createReservation, getCalculatedReservationPrice, TReservationPriceRequest, TReservationRequest } from "@/services/apiFacade.ts";
 import { toast } from "@/components/ui/use-toast.ts";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Iseat } from "@/models/seat.ts";
 import SeatPricing from "@/components/core/SeatPricing.tsx";
 import Button from "@/components/core/Button.tsx";
@@ -16,6 +16,7 @@ export type TCalculatedPrice = {
 
 export default function SubmitReservationPage() {
     const [calculatedPrice, setCalculatedPrice] = useState<TCalculatedPrice | null>(null);
+    const navigate = useNavigate();
 
     const { screeningId } = useParams();
     const selectedSeats = useLocation().state as Iseat[];
@@ -56,6 +57,7 @@ export default function SubmitReservationPage() {
                     title: "Reservation Created!",
                     description: "Success!",
                 });
+                navigate("/profile");
             })
             .catch(() => {
                 toast({
