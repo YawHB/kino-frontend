@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function StartPage() {
-    const { setKino } = useKino();
+    const { setKino, setId } = useKino();
     const [kinos, setKinos] = useState<IKino[] | null>(null);
     const navigate = useNavigate();
     const { toast } = useToast();
@@ -30,15 +30,15 @@ export default function StartPage() {
     });
 
     const handleClick = (chosenCinema: string) => {
-        setKino(chosenCinema);
+        const cinema = kinos?.find((k) => k.name === chosenCinema) as IKino;
+        setKino(cinema.name);
+        setId(cinema.id);
         navigate("/movies", { replace: true });
     };
 
     //if (isError) return <div>Something went wrong...</div>;
 
     if (isLoading) return <div>Loading data...</div>;
-
-    
 
     return (
         <>

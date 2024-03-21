@@ -1,3 +1,5 @@
+import {IReservation} from "@/models/reservation.ts";
+
 /**
  * Utility Method to create options for a fetch call
  * @param method GET, POST, PUT, DELETE

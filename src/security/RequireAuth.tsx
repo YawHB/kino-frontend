@@ -10,6 +10,7 @@ type Props = {
 export default function RequireAuth({ children, roles }: Props) {
     const auth = useAuth();
 
+
     const location = useLocation();
     if (roles) {
         if (!auth.isLoggedInAs(roles)) {

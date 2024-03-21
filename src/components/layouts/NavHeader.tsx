@@ -11,9 +11,11 @@ export default function NavHeader() {
         <nav>
             <div className="flex justify-around items-center pt-5 pb-5 mx-auto bg-red-700 ">
                 <div className="flex gap-3">
-                    <NavLink to={"/movies"}>
-                        <Button>Movies</Button>
-                    </NavLink>
+                    {!auth.isLoggedInAs(["ADMIN"]) && (
+                        <NavLink to={"/movies"}>
+                            <Button>Movies</Button>
+                        </NavLink>
+                    )}
                     {auth.isLoggedInAs(["ADMIN"]) && (
                         <NavLink to={"/admin"}>
                             <Button>Admin</Button>

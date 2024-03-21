@@ -11,6 +11,9 @@ import MovieListPage from "./pages/MovieListPage";
 import MovieDetailsPage from "./pages/MovieDetailsPage";
 import AdminDashboardPage from "@/pages/AdminDashboardPage.tsx";
 import CreateMoviePage from "@/pages/CreateMoviePage.tsx";
+import CreateScreeningPage from "@/pages/CreateScreeningPage.tsx";
+import ScreeningPage from "@/pages/ScreeningPage.tsx";
+import SubmitReservationPage from "@/pages/SubmitReservationPage.tsx";
 
 
 
@@ -21,7 +24,9 @@ function App() {
             <PageLayout>
                 <Routes>
                     <Route path="/" element={<StartPage />} />
+
                     <Route path="/movies">
+
                         <Route
                             index
                             element={
@@ -30,8 +35,11 @@ function App() {
                                 </RequireKino>
                             }
                         />
+
                         <Route path=":id" element={<MovieDetailsPage />} />
+
                     </Route>
+
                     <Route path="/login" element={<SignInPage />} />
                     <Route path="/logout" element={<Logout />} />
                     <Route path="/admin">
@@ -55,7 +63,7 @@ function App() {
                             path={"screening"}
                             element={
                                 <RequireAuth roles={["ADMIN"]}>
-                                    <div>Create screening</div>
+                                    <CreateScreeningPage/>
                                 </RequireAuth>
                             }
                         />
@@ -76,6 +84,20 @@ function App() {
                             </RequireAuth>
                         }
                     />
+                    <Route path="/screening">
+
+                        <Route index
+                               element={<RequireAuth roles={["USER"]}>
+                                   <ScreeningPage/>
+                               </RequireAuth>} />
+
+                        <Route path=":screeningId"
+                               element={<RequireAuth roles={["USER"]}>
+                                   <SubmitReservationPage/>
+                               </RequireAuth>} />
+
+                    </Route>
+                    <Route path="*" element={<h2>Not found</h2>}/>
                 </Routes>
             </PageLayout>
             <Toaster />

@@ -1,5 +1,5 @@
 import { useAuth } from "../contexts/AuthProvider";
-import { useNavigate } from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useToast } from "@/components/ui/use-toast";
 
@@ -12,6 +12,8 @@ export default function Login() {
     const { toast } = useToast();
     const auth = useAuth();
     const navigate = useNavigate();
+    //const from = useLocation().state?.from?.pathname || "/movies";
+
     const {
         register,
         handleSubmit,
@@ -20,15 +22,16 @@ export default function Login() {
     } = useForm<FormValues>();
 
     const onSubmit: SubmitHandler<FormValues> = (user) => {
-        console.log(user);
-
         auth.signIn(user)
-            .then(() => {
+            .then((loggedInUser) => {
                 toast({
                     title: "Logged in successfully!",
                     description: "Username: " + user.username,
                 });
-                navigate("/movies", { replace: true });
+
+                const {roles} = loggedInUser;
+
+                roles.includes("ADMIN") ? navigate("/admin", { replace: true }) : navigate("/movies", { replace: true });
             })
             .catch(() => {
                 toast({

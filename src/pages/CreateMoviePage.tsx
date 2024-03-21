@@ -61,9 +61,6 @@ export default function CreateMoviePage() {
             })
     }
 
-    console.log(TMDBMovie)
-
-
     return (
         <>
             <h2 className="text-center">Create movie page</h2>
