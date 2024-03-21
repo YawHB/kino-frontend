@@ -1,38 +1,43 @@
-
 import { API_URL } from "@/settings";
-import {handleHttpErrors, makeOptions} from "./fetchUtils";
-import {IAuditorium} from "@/models/auditorium.ts";
-import {IScreening} from "@/models/screening.ts";
-import {Iseat} from "@/models/seat.ts";
-import {IReservation} from "@/models/reservation.ts";
+import { handleHttpErrors, makeOptions } from "./fetchUtils";
+import { IAuditorium } from "@/models/auditorium.ts";
+import { IScreening } from "@/models/screening.ts";
+import { Iseat } from "@/models/seat.ts";
+import { IReservation } from "@/models/reservation.ts";
+import { TCalculatedPrice } from "@/pages/SubmitReservationPage";
 
 const KINO_URL = API_URL + "/cinemas";
 const MOVIE_URL = API_URL + "/movies";
 const SCREENING_URL = API_URL + "/screenings";
 const SEAT_URL = API_URL + "/seats";
 const PRICEADJUSTMENT_URL = API_URL + "/priceadjustments";
-const RESERVATION_URL = API_URL + "/reservations"
+const RESERVATION_URL = API_URL + "/reservations";
+const RESERVATIONPRICE_URL = API_URL + "/reservationPrice";
 
 type TMovieRequest = {
-    id: number,
-    title: string,
-    runtime: number,
-    premiere: Date,
-    poster: string
-}
+    id: number;
+    title: string;
+    runtime: number;
+    premiere: Date;
+    poster: string;
+};
 
 export type TScreeningRequest = {
-    movieId: number,
-    auditoriumId: number,
-    is3D: boolean,
-    startTime: Date
-}
+    movieId: number;
+    auditoriumId: number;
+    is3D: boolean;
+    startTime: Date;
+};
 
 export type TReservationRequest = {
-    screeningId: number,
-    seatIds: number[]
-}
+    screeningId: number;
+    seatIds: number[];
+};
 
+export type TReservationPriceRequest = {
+    seatIds: number[];
+    screeningId: number | undefined;
+};
 
 export async function getKinos() {
     return await fetch(KINO_URL).then(handleHttpErrors);
@@ -65,7 +70,7 @@ export async function createScreening(newScreening: TScreeningRequest): Promise<
 }
 
 export async function getSeatsByAuditoriumId(auditoriumId: number): Promise<Iseat[]> {
-    return await fetch(`${SEAT_URL}/auditorium/${auditoriumId}`).then(handleHttpErrors)
+    return await fetch(`${SEAT_URL}/auditorium/${auditoriumId}`).then(handleHttpErrors);
 }
 
 export async function getMovieScreeningsInCinema(movieId: number, cinemaId: number, startDate: string, endDate: string): Promise<IScreening[]> {
@@ -77,7 +82,6 @@ export async function getAllPriceAdjustments() {
 }
 export async function getReservedSeatsByScreeningId(screeningId: number): Promise<Iseat[]> {
     return await fetch(`${SEAT_URL}/screening/${screeningId}`).then(handleHttpErrors);
-
 }
 
 export async function createReservation(request: TReservationRequest): Promise<IReservation> {
@@ -87,4 +91,9 @@ export async function createReservation(request: TReservationRequest): Promise<I
 
 export async function getReservationsByUsername(username: string) {
     return await fetch(`${RESERVATION_URL}/users/${username}`).then(handleHttpErrors);
+}
+
+export async function getCalculatedReservationPrice(request: TReservationPriceRequest): Promise<TCalculatedPrice> {
+    const options = makeOptions("POST", request, true);
+    return await fetch(RESERVATIONPRICE_URL, options).then(handleHttpErrors);
 }
