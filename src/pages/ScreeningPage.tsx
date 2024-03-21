@@ -5,6 +5,7 @@ import { Iseat } from "@/models/seat";
 import { useState } from "react";
 import {Link, useLocation} from "react-router-dom";
 import Button from "@/components/core/Button.tsx";
+import TicketsDisplay from "@/components/layouts/TicketsDisplay";
 
 const ScreeningPage = () => {
     const screening = useLocation().state as IScreening;
@@ -32,9 +33,10 @@ const ScreeningPage = () => {
                         <Link to={`${screening.id}`} state={selectedSeats}><Button>Continue</Button></Link>
                     </div>
                 </div>
-            </div>
 
-        </>
+            </div>
+            <TicketsDisplay selectedSeats={selectedSeats} />
+          </>
     );
 };
 
