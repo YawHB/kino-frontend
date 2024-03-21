@@ -6,6 +6,7 @@ import { useState } from "react";
 import {Link, useLocation} from "react-router-dom";
 import Button from "@/components/core/Button.tsx";
 import TicketsDisplay from "@/components/layouts/TicketsDisplay";
+import ScreeningInfo from "@/components/core/ScreeningInfo";
 
 const ScreeningPage = () => {
     const screening = useLocation().state as IScreening;
@@ -22,7 +23,8 @@ const ScreeningPage = () => {
 
     return (
         <>
-            <h1 className={"text-center my-4"}>Screening Page</h1>
+             <ScreeningInfo screening={screening} />
+    
             <div className={"flex flex-wrap justify-center gap-5"}>
 
                 <Auditorium screening={screening} handleSeatClick={handleSeatClick}/>
