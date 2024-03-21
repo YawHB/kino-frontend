@@ -48,7 +48,7 @@ export async function getTMDBMovie(id: string) {
 }
 
 export async function postMovie(newMovie: TMovieRequest) {
-    const options = makeOptions("POST", newMovie);
+    const options = makeOptions("POST", newMovie, true);
     return await fetch(MOVIE_URL, options).then(handleHttpErrors);
 }
 
@@ -65,12 +65,13 @@ export async function getAuditoriumsByCinemaId(cinemaId: number): Promise<IAudit
 }
 
 export async function createScreening(newScreening: TScreeningRequest): Promise<IScreening> {
-    const options = makeOptions("POST", newScreening);
+    const options = makeOptions("POST", newScreening, true);
     return await fetch(`${SCREENING_URL}`, options).then(handleHttpErrors);
 }
 
 export async function getSeatsByAuditoriumId(auditoriumId: number): Promise<Iseat[]> {
-    return await fetch(`${SEAT_URL}/auditorium/${auditoriumId}`).then(handleHttpErrors);
+    const options = makeOptions("GET", null, true)
+    return await fetch(`${SEAT_URL}/auditorium/${auditoriumId}`, options).then(handleHttpErrors)
 }
 
 export async function getMovieScreeningsInCinema(movieId: number, cinemaId: number, startDate: string, endDate: string): Promise<IScreening[]> {
@@ -78,10 +79,12 @@ export async function getMovieScreeningsInCinema(movieId: number, cinemaId: numb
 }
 
 export async function getAllPriceAdjustments() {
-    return await fetch(PRICEADJUSTMENT_URL).then(handleHttpErrors);
+    const options = makeOptions("GET", null, true);
+    return await fetch(PRICEADJUSTMENT_URL, options).then(handleHttpErrors);
 }
 export async function getReservedSeatsByScreeningId(screeningId: number): Promise<Iseat[]> {
-    return await fetch(`${SEAT_URL}/screening/${screeningId}`).then(handleHttpErrors);
+    const options = makeOptions("GET", null, true);
+    return await fetch(`${SEAT_URL}/screening/${screeningId}`, options).then(handleHttpErrors);
 }
 
 export async function createReservation(request: TReservationRequest): Promise<IReservation> {
@@ -90,7 +93,8 @@ export async function createReservation(request: TReservationRequest): Promise<I
 }
 
 export async function getReservationsByUsername(username: string) {
-    return await fetch(`${RESERVATION_URL}/users/${username}`).then(handleHttpErrors);
+    const options = makeOptions("GET", null, true);
+    return await fetch(`${RESERVATION_URL}/users/${username}`, options).then(handleHttpErrors);
 }
 
 export async function getCalculatedReservationPrice(request: TReservationPriceRequest): Promise<TCalculatedPrice> {
