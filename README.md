@@ -1,34 +1,43 @@
-# React + TypeScript + Vite
+# KINO Frontend
 
-[![Azure Static Web Apps CI/CD](https://github.com/YawHB/kino-frontend/actions/workflows/azure-static-web-apps-purple-dune-098838b03.yml/badge.svg)](https://github.com/YawHB/kino-frontend/actions/workflows/azure-static-web-apps-purple-dune-098838b03.yml)
+This is a Typescript React kino-application.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Prerequisites
 
-Currently, two official plugins are available:
+-   Node.js
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Setup
 
-## Expanding the ESLint configuration
+#### 1. Clone the repository:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```
+git clone https://github.com/YawHB/kino-frontend.git
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+#### 2. Install necessary dependencies
 
-YYYAAAWWWWW!!!
+```
+npm install
+```
+
+#### 3. Before starting the application, make sure the [backend](https://github.com/AliHMohammad/kino-backend.git) is running in the background.
+
+#### 4. Build the application
+
+```
+npm build
+```
+
+#### 5. Start the application
+
+```
+npm start
+```
+
+### Build Status (Production branch)
+
+[![Azure Static Web Apps CI/CD](https://github.com/YawHB/kino-frontend/actions/workflows/azure-static-web-apps-purple-dune-098838b03.yml/badge.svg?branch=production)](https://github.com/YawHB/kino-frontend/actions/workflows/azure-static-web-apps-purple-dune-098838b03.yml)
+
+### Deployment
+
+The application is deployed to Azure Web App. You can access it [here](https://purple-dune-098838b03.4.azurestaticapps.net).
