@@ -58,6 +58,7 @@ export default function Auditorium({ screening, handleSeatClick }: Props) {
                             gridTemplateColumns: `repeat(${seatsPerRow}, minmax(0, 1fr))`,
                             gridGap: "0.25rem",
                             width: "90%",
+                            marginBottom: "80px",
                         }}
                     >
                         {seats?.map((seat) => (
