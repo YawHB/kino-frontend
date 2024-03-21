@@ -49,25 +49,29 @@ export default function Auditorium({ screening, handleSeatClick }: Props) {
         // cols = seatsPerRow
         // rows = numberOfRows
         <>
-            {seats && reservedSeats && (
-                <div
-                    style={{
-                        display: "grid",
-                        gridTemplateColumns: `repeat(${seatsPerRow}, minmax(0, 1fr))`,
-                        gridGap: "0.25rem",
-                        width: "33.333333%",
-                    }}
-                >
-                    {seats?.map((seat) => (
-                        <Seat
-                            key={seat.id}
-                            seat={seat}
-                            onSeatClick={handleSeatClick}
-                            disabled={reservedSeats.some((reserved) => reserved.id == seat.id)}
-                        />
-                    ))}
-                </div>
-            )}
+            <div className="flex flex-col items-center">
+                <div className=" mb-5 flex h-5 w-full items-center justify-center rounded-sm bg-gray-600 text-sm text-white">Screen</div>
+                {seats && reservedSeats && (
+                    <div
+                        style={{
+                            display: "grid",
+                            gridTemplateColumns: `repeat(${seatsPerRow}, minmax(0, 1fr))`,
+                            gridGap: "0.25rem",
+                            width: "90%",
+                            marginBottom: "80px",
+                        }}
+                    >
+                        {seats?.map((seat) => (
+                            <Seat
+                                key={seat.id}
+                                seat={seat}
+                                onSeatClick={handleSeatClick}
+                                disabled={reservedSeats.some((reserved) => reserved.id == seat.id)}
+                            />
+                        ))}
+                    </div>
+                )}
+            </div>
         </>
     );
 }
