@@ -6,15 +6,20 @@ export default function ProfilePage() {
 
     return (
         <>
-            <div className="flex flex-wrap flex-row justify-evenly gap-3">
+            <div className="flex flex-col gap-10">
                 <div>
-                    <h2>Profile information</h2>
-                    <p className="font-bold">Username: <span className={"font-normal"}>{auth.username}</span></p>
-                    <p className="font-bold">Email: <span className={"font-normal"}>{auth.email}</span></p>
+                    <h2 className="font-bold">Profile information</h2>
+                    <p className="font-bold">
+                        Username: <span className={"font-normal"}>{auth.username}</span>
+                    </p>
+                    <p className="font-bold">
+                        Email: <span className={"font-normal"}>{auth.email}</span>
+                    </p>
                 </div>
+
                 <div>
-                    <h2>Reservations:</h2>
-                    <UserReservations/>
+                    <h2 className="font-bold">Reservations:</h2>
+                    <UserReservations />
                 </div>
             </div>
         </>
