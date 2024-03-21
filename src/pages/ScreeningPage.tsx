@@ -5,7 +5,6 @@ import { Iseat } from "@/models/seat";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Button from "@/components/core/Button.tsx";
-import TicketsDisplay from "@/components/layouts/TicketsDisplay";
 import ScreeningInfo from "@/components/core/ScreeningInfo";
 import ScreeningTicketFooter from "@/components/layouts/ScreeningTicketFooter";
 

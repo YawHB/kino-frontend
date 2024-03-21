@@ -14,9 +14,12 @@ export default function ScreeningTicketFooter({ selectedSeats }: Props) {
              bg-opacity-80 
              p-4 
              text-white
-             backdrop-blur-sm"
+             backdrop-blur-sm
+             px-14"
         >
-            <TicketsDisplay selectedSeats={selectedSeats} />
+            <div className="w-1/2">
+                <TicketsDisplay selectedSeats={selectedSeats} />
+            </div>
         </footer>
     );
 }
