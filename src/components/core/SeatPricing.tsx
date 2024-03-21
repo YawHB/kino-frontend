@@ -52,7 +52,7 @@ export default function SeatPricing({ seats, runtime, is3D }: Props) {
 
     return (
         <div className="min-w-80 max-w-96 rounded-sm bg-slate-300 p-5">
-            <div className="grid grid-cols-2 gap-1">
+            <div className="grid grid-cols-[3fr,1fr] gap-1">
                 <div className="col-span-2 font-bold">Seats</div>
                 {COWBOY_SEATS.length > 0 && (
                     <>
@@ -78,13 +78,13 @@ export default function SeatPricing({ seats, runtime, is3D }: Props) {
                         <div className="ml-auto">{calculatSeatsPrice(DELUXE_SEATS)},-</div>
                     </>
                 )}
-                <div>Total seats price</div>
-                <div className="ml-auto">{TOTAL_SEAT_PRICE},-</div>
 
                 {seats.length > 9 && (
                     <>
                         <div className="col-span-2 mt-3 font-bold">Discounts</div>
-                        <p>Large group</p>
+                        <p>
+                            Large group <span className="opacity-40">(10 or more)</span>
+                        </p>
                         <div className="ml-auto">{calculatSeatsPrice(seats) - TOTAL_SEAT_PRICE},-</div>
                     </>
                 )}
@@ -93,7 +93,10 @@ export default function SeatPricing({ seats, runtime, is3D }: Props) {
 
                 {seats.length > 0 && seats.length <= 5 && (
                     <>
-                        <p> Small group fee</p>
+                        <p>
+                            {" "}
+                            Small group <span className="opacity-40">(less than 6)</span>
+                        </p>
                         <div className="ml-auto">{Math.abs(calculatSeatsPrice(seats) - TOTAL_SEAT_PRICE)},-</div>
                     </>
                 )}
