@@ -22,11 +22,11 @@ export default function ScreeningInfo({ screening }: Props) {
 
     return (
         <div className="mb-10 flex flex-col items-center gap-5">
-            <h1 className="text-4xl font-semibold">{screening.movie.title}</h1>
-            <h2 className="text-3xl">
+            <h1 className="text-5xl font-semibold">{screening.movie.title}</h1>
+            <h2 className="text-3xl font-semibold">
                 {kino} - {screening.auditorium.name}
             </h2>
-            <h3>{formattedDate}</h3>
+            <h3 className="text-2xl">{formattedDate}</h3>
         </div>
     );
 }
