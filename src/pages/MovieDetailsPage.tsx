@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
-const POSTER_URL = "https://image.tmdb.org/t/p/w400";
+export const POSTER_URL = "https://image.tmdb.org/t/p/w400";
 
 export default function MovieDetailsPage() {
     const { id } = useParams();

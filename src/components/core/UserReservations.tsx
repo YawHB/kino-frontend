@@ -3,6 +3,7 @@ import {IReservation} from "@/models/reservation.ts";
 import {getReservationsByUsername} from "@/services/apiFacade.ts";
 import {useAuth} from "@/contexts/AuthProvider.tsx";
 import {toast} from "@/components/ui/use-toast.ts";
+import UserReservationsItem from "@/components/core/UserReservationsItem.tsx";
 
 
 export default function UserReservations() {
@@ -25,9 +26,9 @@ export default function UserReservations() {
 
     return (
         <>
-            <div>
+            <div className={"flex flex-col"}>
                 {reservations?.map((reservation) => (
-                    <div>{reservation.screening.movie.title}</div>
+                    <UserReservationsItem key={reservation.id} reservation={reservation}/>
                 ))}
 
             </div>
