@@ -44,7 +44,7 @@ export default function StartPage() {
     return (
         <div className="flex flex-col items-center justify-center md:flex-row">
             <aside className="mb-3 flex flex-col items-center text-center">
-                <img className="max-w-xs" src="cat_popcorn.jpg" alt="cat_popcorn" />
+                <img className="max-w-xs" src="cat_popcorn.png" alt="cat_popcorn" />
                 <h1 className="text-3xl font-semibold">Welcome!</h1>
                 <h2 className="text-2xl">Choose a kino</h2>
             </aside>

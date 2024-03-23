@@ -9,7 +9,7 @@ export default function NavHeader() {
 
     return (
         <nav>
-            <div className="flex justify-around items-center pt-5 pb-5 mx-auto bg-red-700 ">
+            <div className="mx-auto flex items-center justify-between bg-red-700 p-5 ">
                 <div className="flex gap-3">
                     {!auth.isLoggedInAs(["ADMIN"]) && (
                         <NavLink to={"/movies"}>
@@ -27,9 +27,12 @@ export default function NavHeader() {
                         </NavLink>
                     )}
                 </div>
-                <h1 className="text-5xl font-bold font-sans ">Kino</h1>
+                <div className="flex items-center gap-2">
+                    <img className="max-w-20" src="cat_popcorn.png" alt="cat_popcorn" />
+                    <p className="font-semibold">CYBA Kino</p>
+                </div>
 
-                <div className="flex gap-5 items-center">
+                <div className="flex items-center gap-5">
                     <KinoSelect />
                     <AuthStatus />
                 </div>

@@ -11,7 +11,7 @@ export default function Button({ onClick, children }: Props) {
     return (
         <button
             onClick={(e) => onClick && onClick(e)}
-            className={`${primary} px-4 py-2 rounded-sm  transition-all text-lg`}
+            className={`${primary} px-4 py-2 rounded-sm transition-all text-lg`}
         >
             {children}
         </button>
