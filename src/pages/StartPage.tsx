@@ -18,15 +18,16 @@ export default function StartPage() {
 
     const { isLoading } = useQuery({
         queryKey: ["kinos"],
-        queryFn: () => getKinos()
-            .then((data) => setKinos(data))
-            .catch(() => {
-                toast({
-                    title: "Something went wrong!",
-                    description: `Could not find the cinemas in our system. Please reload the webpage or try again at a later time.`,
-                    variant: "destructive",
-                });
-            }),
+        queryFn: () =>
+            getKinos()
+                .then((data) => setKinos(data))
+                .catch(() => {
+                    toast({
+                        title: "Something went wrong!",
+                        description: `Could not find the cinemas in our system. Please reload the webpage or try again at a later time.`,
+                        variant: "destructive",
+                    });
+                }),
     });
 
     const handleClick = (chosenCinema: string) => {
@@ -41,11 +42,15 @@ export default function StartPage() {
     if (isLoading) return <div>Loading data...</div>;
 
     return (
-        <>
-            <h1>Vælg Biograf</h1>
-            {kinos?.map((kino) => (
-                <StartPageButton key={kino.id} name={kino.name} city={kino.city} onClick={handleClick} />
-            ))}
-        </>
+        <div className="flex flex-col items-center justify-center md:flex-row">
+            <aside className="mb-3 flex flex-col items-center text-center">
+                <img className="max-w-xs" src="cat_popcorn.jpg" alt="cat_popcorn" />
+                <h1 className="text-3xl font-semibold">Welcome!</h1>
+                <h2 className="text-2xl">Choose a kino</h2>
+            </aside>
+            <aside className="flex flex-col items-center md:items-start">
+                {kinos?.map((kino) => <StartPageButton key={kino.id} name={kino.name} city={kino.city} onClick={handleClick} />)}
+            </aside>
+        </div>
     );
 }
