@@ -29,24 +29,25 @@ export default function MovieDetailsPage() {
     if (isLoading) return <div>Loading...</div>;
 
     return (
-        <>
-            <div className="flex gap-10">
-                <div className=" w-[70%]">
-                    <img className="w-full rounded-md object-cover" src={POSTER_URL + movie?.posterPath} alt="poster" />
+        <div className="max-w-4xl mx-auto">
+            <section className="flex flex-col items-center justify-center gap-10 sm:flex-row sm:items-start">
+                <div className="sm:min-w-60">
+                    <img className="w-full max-w-sm rounded-md object-cover drop-shadow-lg" src={POSTER_URL + movie?.posterPath} alt="poster" />
                 </div>
 
-                <div className={"flex flex-col"}>
-                    <h1 className="mb-5 text-5xl">{movie?.title}</h1>
+                <div className="flex flex-col">
+                    <h1 className="mb-5 text-4xl md:text-5xl">{movie?.title}</h1>
                     <p className="mb-4 font-medium"> {movie?.overview}</p>
                     <p className="font-extralight">Runtime</p>
                     <p className="mb-4 font-bold">{movie?.runtime} min.</p>
                     <p className="font-extralight">Genres</p>
                     <p className="font-bold">{movie?.genres.map((genre) => genre).join(", ")}</p>
-                    <div>
-                        <ScreeningOverview movieId={Number(id as string)} />
-                    </div>
                 </div>
+            </section>
+
+            <div>
+                <ScreeningOverview movieId={Number(id as string)} />
             </div>
-        </>
+        </div>
     );
 }

@@ -32,7 +32,7 @@ const ScreeningPage = () => {
                     <SeatPricing seats={selectedSeats} is3D={screening.is3D} runtime={screening.movie.runtime} />
                     <div className={"flex justify-center"}>
                         <Link to={`${screening.id}`} state={selectedSeats}>
-                            <Button>Continue</Button>
+                            <Button style="secondary">Continue</Button>
                         </Link>
                     </div>
                 </div>

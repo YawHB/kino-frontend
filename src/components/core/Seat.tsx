@@ -11,13 +11,13 @@ type Props = {
 
 function getColor(isSelected: boolean, disabled: boolean) {
     if (disabled) {
-        return "#e73333"
+        return "red-600";
     } 
 
     if (isSelected) {
-        return "#1849ec"
+        return "blue-500";
     } else {
-        return "#18c718"
+        return "green-400"
     }
 }
 
@@ -33,7 +33,7 @@ const Seat = ({ seat, onSeatClick, disabled }: Props) => {
     const color = getColor(isSelected, disabled);
 
     return (
-        <div className={`h-6 w-6 ${!disabled && "hover:cursor-pointer"}`} onClick={handleClick}>
+        <div className={`h-6 w-6 ${!disabled && `hover:cursor-pointer hover:fill-red-600 fill-${color} transition-colors`}`} onClick={handleClick}>
             <svg
                 version="1.0"
                 xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +42,7 @@ const Seat = ({ seat, onSeatClick, disabled }: Props) => {
                 viewBox="0 0 356 289"
                 preserveAspectRatio="xMidYMid meet"
             >
-                <g transform="translate(20.0,270.0) scale(0.50,-0.50)" fill={color} stroke="#36454F" strokeWidth="5">
+                <g transform="translate(20.0,270.0) scale(0.50,-0.50)" stroke="#36454F" strokeWidth="5">
                     <path
                         d="M201 511 c-67 -17 -76 -37 -79 -174 -4 -134 3 -167 43 -193 35 -23
                             194 -31 264 -14 77 18 86 38 86 180 0 191 -8 201 -173 206 -59 2 -122 -1 -141

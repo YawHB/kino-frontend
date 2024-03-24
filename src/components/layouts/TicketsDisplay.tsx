@@ -9,7 +9,7 @@ interface Props {
 export default function TicketsDisplay({ selectedSeats }: Props) {
     return (
         <Carousel>
-            <CarouselPrevious />
+            <CarouselPrevious variant={"ghost"} />
             <CarouselContent>
                 {selectedSeats.map((seat) => (
                     <CarouselItem key={seat.id} className="basis-36">
@@ -17,7 +17,7 @@ export default function TicketsDisplay({ selectedSeats }: Props) {
                     </CarouselItem>
                 ))}
             </CarouselContent>
-            <CarouselNext />
+            <CarouselNext variant={"ghost"} />
         </Carousel>
     );
 }

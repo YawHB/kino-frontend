@@ -22,7 +22,7 @@ export function upcomingWeekDates() {
   for (let i = 0; i < 7; i++) {
     const date = new Date(TODAY);
     week.push(
-      new Intl.DateTimeFormat("da-DK", DATE_TIME_OPTIONS).format(
+      new Intl.DateTimeFormat("en-GB", DATE_TIME_OPTIONS).format(
         date.setDate(date.getDate() + i),
       ),
     );
