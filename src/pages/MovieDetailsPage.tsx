@@ -31,7 +31,7 @@ export default function MovieDetailsPage() {
     return (
         <div className="max-w-4xl mx-auto">
             <section className="flex flex-col items-center justify-center gap-10 sm:flex-row sm:items-start">
-                <div className="sm:min-w-60">
+                <div className="sm:min-w-60 animate-fade-in">
                     <img className="w-full max-w-sm rounded-md object-cover drop-shadow-lg" src={POSTER_URL + movie?.posterPath} alt="poster" />
                 </div>
 
