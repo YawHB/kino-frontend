@@ -16,11 +16,10 @@ export default function MovieItem({ movie }: Props) {
 
     return (
         <article className="flex max-w-52 flex-col items-center gap-3">
-            <div className="h-full w-full">
+            <div className="h-full w-full transition-all">
                 <img className=" h-full w-full rounded-xl object-cover drop-shadow-md" src={POSTER_URL + movie.poster} alt="poster missing" />
             </div>
-
-            <h3 className="line-clamp-1 text-lg font-bold">{movie.title}</h3>
+            <h3 className="pb-2 line-clamp-1 text-lg font-bold">{movie.title}</h3>
             <div>
                 <Link to={`${movie.id}`}>
                     <Button style="secondary" icon={<IoTicket size={20} />}>
