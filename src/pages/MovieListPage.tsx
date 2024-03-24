@@ -1,11 +1,9 @@
-import MovieItem from '@/components/core/MovieItem';
-import { toast } from '@/components/ui/use-toast';
-import { useKino } from '@/contexts/KinoProvider';
-import { queryClient } from '@/main';
-import { IMovieItem } from '@/models/movie';
-import { getAllMovies, getMoviesByCinemaId } from '@/services/apiFacade';
-import { useQuery } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
+import MovieItem from "@/components/core/MovieItem";
+import { toast } from "@/components/ui/use-toast";
+import { useKino } from "@/contexts/KinoProvider";
+import { IMovieItem } from "@/models/movie";
+import { getMoviesByCinemaId } from "@/services/apiFacade";
+import { useEffect, useState } from "react";
 
 export default function MovieListPage() {
     const { kino, id } = useKino();
@@ -13,7 +11,7 @@ export default function MovieListPage() {
 
     useEffect(() => {
         getMoviesByCinemaId(id)
-            .then(data => {
+            .then((data) => {
                 setMovies(data);
             })
             .catch(() => {
@@ -25,11 +23,12 @@ export default function MovieListPage() {
             });
     }, [id]);
 
-    
     return (
         <>
-            <h1 className="my-16 text-5xl font-extrabold">Film i {kino}</h1>
-            <div className="grid grid-cols-5 gap-4">{movies?.map((movie) => <MovieItem movie={movie} key={movie.id} />)}</div>
+            <h1 className=" my-16 text-center text-5xl font-extrabold sm:text-left">Movies in {kino}</h1>
+            <div className="grid grid-cols-1 justify-items-center gap-4 sm:grid-cols-3 md:grid-cols-4">
+                {movies?.map((movie) => <MovieItem movie={movie} key={movie.id} />)}
+            </div>
         </>
     );
 }

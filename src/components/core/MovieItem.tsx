@@ -15,9 +15,9 @@ export default function MovieItem({ movie }: Props) {
     // }
 
     return (
-        <div className="flex flex-col items-center gap-3">
-            <div>
-                <img className="h-full w-full rounded-xl object-cover drop-shadow-md" src={POSTER_URL + movie.poster} alt="poster missing" />
+        <article className="flex max-w-52 flex-col items-center gap-3">
+            <div className="h-full w-full">
+                <img className=" h-full w-full rounded-xl object-cover drop-shadow-md" src={POSTER_URL + movie.poster} alt="poster missing" />
             </div>
 
             <h3 className="line-clamp-1 text-lg font-bold">{movie.title}</h3>
@@ -28,6 +28,6 @@ export default function MovieItem({ movie }: Props) {
                     </Button>
                 </Link>
             </div>
-        </div>
+        </article>
     );
 }
