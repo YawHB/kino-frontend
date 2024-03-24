@@ -11,7 +11,7 @@ export default function NavHeader() {
 
     return (
         <nav>
-            <div className="mx-auto flex items-center justify-between bg-gradient-to-t from-red-700 to-red-600 p-5 drop-shadow-lg">
+            <div className="mx-auto flex flex-wrap items-center justify-between bg-gradient-to-t from-red-700 to-red-600 p-5 drop-shadow-lg">
                 <div className="flex gap-3">
                     {!auth.isLoggedInAs(["ADMIN"]) && (
                         <NavLink to={"/movies"}>

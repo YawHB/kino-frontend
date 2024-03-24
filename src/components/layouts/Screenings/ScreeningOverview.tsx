@@ -4,6 +4,7 @@ import { IScreening } from "@/models/screening";
 import { getMovieScreeningsInCinema } from "@/services/apiFacade";
 import { useKino } from "@/contexts/KinoProvider";
 import { DATE_TIME_OPTIONS, TODAY, upcomingWeekDates } from "@/utils/dateUtils";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
 type Props = {
     movieId: number;
@@ -27,16 +28,29 @@ export default function ScreeningOverview({ movieId }: Props) {
     return (
         <>
             <h2 className="my-8 text-2xl font-bold sm:text-3xl">Showings in {kino}</h2>
-            <section className="flex w-full">
-                {week.map((date) => {
-                    const s = screenings?.filter((screen) => {
-                        const copy = new Date(screen.startTime);
+            <section className="relative flex w-full justify-center">
+              {/* // Gradient fade effect, parent needs to be relative */}
+                <div className="pointer-events-none absolute z-10 h-full w-[90%] bg-[linear-gradient(90deg,rgba(255,220,174,1)0%,rgba(0,0,0,0)5%,rgba(0,0,0,0)95%,rgba(255,220,174,1)100%)]"></div>
 
-                        return new Intl.DateTimeFormat("en-GB", DATE_TIME_OPTIONS).format(copy) == date;
-                    }) as IScreening[];
+                <Carousel className="w-[90%]">
+                    <CarouselPrevious />
+                    <CarouselContent>
+                        {week.map((date) => {
+                            const s = screenings?.filter((screen) => {
+                                const copy = new Date(screen.startTime);
 
-                    return <ScreeningDate key={date} date={date} screenings={s} />;
-                })}
+                                return new Intl.DateTimeFormat("en-GB", DATE_TIME_OPTIONS).format(copy) == date;
+                            }) as IScreening[];
+
+                            return (
+                                <CarouselItem key={date} className="basis-36">
+                                    <ScreeningDate date={date} screenings={s} />
+                                </CarouselItem>
+                            );
+                        })}
+                    </CarouselContent>
+                    <CarouselNext />
+                </Carousel>
             </section>
         </>
     );

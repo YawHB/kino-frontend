@@ -3,11 +3,13 @@
 @tailwind utilities;
 
 body {
-  background-color: rgb(254, 246, 235);
+  background-color: var(--backgroundColor);
 }
  
 @layer base {
   :root {
+    --backgroundColor: rgb(255, 220, 174);
+
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
 
