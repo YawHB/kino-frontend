@@ -11,7 +11,7 @@ export default function ScreeningTime({ screening }: Props) {
 
   return (
       <Link to="/screening" state={screening}>
-        <article className="w-full cursor-pointer rounded-sm bg-green-500 p-2 text-center text-white transition-all hover:bg-green-400">
+        <article className="w-full cursor-pointer rounded-sm bg-green-400 p-2 text-center text-white transition-all hover:bg-green-300">
           <h3>{screening.auditorium.name}</h3>
           <h3 className="font-bold">{toHourMinuteFormat(screening.startTime)}</h3>
         </article>

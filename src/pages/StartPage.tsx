@@ -42,7 +42,7 @@ export default function StartPage() {
     if (isLoading) return <div>Loading data...</div>;
 
     return (
-        <div className="flex flex-col items-center justify-center md:flex-row">
+        <div className="animate-fade-in flex flex-col items-center justify-center md:flex-row">
             <aside className="mb-3 flex flex-col items-center text-center">
                 <img className="max-w-xs" src="cat_popcorn.png" alt="cat_popcorn" />
                 <h1 className="text-3xl font-semibold">Welcome!</h1>

@@ -31,7 +31,7 @@ export default function ScreeningOverview({ movieId }: Props) {
 
   return (
     <>
-      <h2 className="my-8 text-3xl font-bold">Visninger i {kino}</h2>
+      <h2 className="my-8 text-3xl font-bold">Showings in {kino}</h2>
       <section className="flex gap-3">
         {week.map((date) => {
           const s = screenings?.filter((screen) => {

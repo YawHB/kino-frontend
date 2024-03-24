@@ -32,24 +32,20 @@ export default function MovieDetailsPage() {
         <>
             <div className="flex gap-10">
                 <div className=" w-[70%]">
-                    <img className="rounded-md w-full object-cover" src={POSTER_URL + movie?.posterPath} alt="poster" />
+                    <img className="w-full rounded-md object-cover" src={POSTER_URL + movie?.posterPath} alt="poster" />
                 </div>
 
-                <div className={"flex flex-col gap-10"}>
+                <div className={"flex flex-col"}>
+                    <h1 className="mb-5 text-5xl">{movie?.title}</h1>
+                    <p className="mb-4 font-medium"> {movie?.overview}</p>
+                    <p className="font-extralight">Runtime</p>
+                    <p className="mb-4 font-bold">{movie?.runtime} min.</p>
+                    <p className="font-extralight">Genres</p>
+                    <p className="font-bold">{movie?.genres.map((genre) => genre).join(", ")}</p>
                     <div>
-                        <h1 className="text-5xl mb-5 ">{movie?.title}</h1>
-                        {/* <p className="text-2xl">Description </p> */}
-                        <p className="font-medium"> {movie?.overview}</p>
-                        <p className="font-extralight">Runtime</p>
-                        <p className="font-bold">{movie?.runtime}</p>
-                        <p className="font-extralight">Genres </p>
-                        <p className="font-bold">{movie?.genres.map((genre) => genre).join(", ")}</p>
-                    </div>
-                    <div>
-                        <ScreeningOverview movieId={Number(id as string)}/>
+                        <ScreeningOverview movieId={Number(id as string)} />
                     </div>
                 </div>
-
             </div>
         </>
     );
