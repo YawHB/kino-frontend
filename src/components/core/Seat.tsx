@@ -37,7 +37,7 @@ const Seat = ({ seat, onSeatClick, disabled }: Props) => {
     
 
     return (
-        <div className={`h-6 w-6 ${color}  ${!disabled && `hover:cursor-pointer hover:contrast-150 `}`} onClick={handleClick}>
+        <div className={`size-4 sm:size-6 ${color}  ${!disabled && `hover:cursor-pointer hover:contrast-150 `}`} onClick={handleClick}>
             <svg
                 version="1.0"
                 xmlns="http://www.w3.org/2000/svg"

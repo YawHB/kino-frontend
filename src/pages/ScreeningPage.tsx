@@ -25,10 +25,10 @@ const ScreeningPage = () => {
         <>
             <ScreeningInfo screening={screening} />
 
-            <div className={"flex flex-wrap justify-center gap-10"}>
+            <div className={"flex flex-wrap justify-center sm:gap-10"}>
                 <Auditorium screening={screening} handleSeatClick={handleSeatClick} />
 
-                <div className={"flex flex-col gap-5"}>
+                <div className={"flex flex-col gap-5 mb-20 sm:mb-1"}>
                     <SeatPricing seats={selectedSeats} is3D={screening.is3D} runtime={screening.movie.runtime} />
                     <div className={"flex justify-center"}>
                         <Link to={`${screening.id}`} state={selectedSeats}>
