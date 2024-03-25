@@ -2,7 +2,6 @@ import { createReservation, getCalculatedReservationPrice, TReservationPriceRequ
 import { toast } from "@/components/ui/use-toast.ts";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Iseat } from "@/models/seat.ts";
-import SeatPricing from "@/components/core/SeatPricing.tsx";
 import Button from "@/components/core/Button.tsx";
 import { useEffect, useState } from "react";
 import PricingDisplay from "@/components/layouts/PricingDisplay";
@@ -30,8 +29,6 @@ export default function SubmitReservationPage() {
     useEffect(() => {
         getCalculatedReservationPrice(request)
             .then((data) => {
-                console.log(data);
-
                 setCalculatedPrice(data);
             })
             .catch((e) => {
@@ -85,12 +82,14 @@ export default function SubmitReservationPage() {
                 </div>
                 <div className="ml-auto">{calculatedPrice?.discounts},-</div>
 
-                <div className="col-span-2 mt-2 border-b-2 border-slate-400"></div>
+                <div className="col-span-2 mt-5 border-b-2 border-red-500"></div>
                 <div className="font-bold">Total</div>
                 <div className="ml-auto font-bold">{calculatedPrice?.totalPrice},-</div>
             </PricingDisplay>
             <div>
-                <Button onClick={handleSubmitReservation}>Buy Tickets</Button>
+                <Button style="secondary" onClick={handleSubmitReservation}>
+                    Buy Tickets
+                </Button>
             </div>
         </div>
     );

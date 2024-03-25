@@ -124,7 +124,7 @@ export default function SeatPricing({ seats, runtime, is3D }: Props) {
                     <div className="ml-auto">{RUNTIME_FEE * seats.length},-</div>
                 </>
             )}
-            <div className="col-span-2 border-b-2 border-red-500 mt-auto"></div>
+            <div className="col-span-2 border-b-2 border-red-500 mt-5"></div>
             <div className="font-bold">Total</div>
             <div className="ml-auto font-bold">{TOTAL_SEAT_PRICE + (FEE_3D + RUNTIME_FEE) * seats.length},-</div>
         </PricingDisplay>
