@@ -6,7 +6,7 @@ interface Props {
 
 export default function Ticket({ seat }: Props) {
     return (
-        <div className="flex h-14 w-[120px] items-center justify-center bg-[url('ticket-shape.svg')] bg-no-repeat text-white gap-5">
+        <div className="flex h-14 w-[120px] scale-75 sm:scale-100 items-center justify-center bg-[url('ticket-shape.svg')] bg-no-repeat text-white gap-5">
             <div className="">
                 Row <span className="block font-bold">{seat.rowNumber}</span>
             </div>

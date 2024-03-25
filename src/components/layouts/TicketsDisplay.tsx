@@ -14,7 +14,7 @@ export default function TicketsDisplay({ selectedSeats }: Props) {
                 <CarouselPrevious variant={"ghost"} />
                 <CarouselContent>
                     {selectedSeats.map((seat) => (
-                        <CarouselItem key={seat.id} className="basis-36 animate-fade-in">
+                        <CarouselItem key={seat.id} className="basis-28 sm:basis-36 animate-fade-in">
                             <Ticket seat={seat} />
                         </CarouselItem>
                     ))}

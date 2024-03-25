@@ -19,7 +19,7 @@ export default function ScreeningTicketFooter({ selectedSeats }: Props) {
                 <section className="w-1/2 pl-10">
                     <TicketsDisplay selectedSeats={selectedSeats} />
                 </section>
-                <section className="p-3 text-lg">
+                <section className="p-3 text-lg border-l-2 border-slate-400">
                     <span className="font-bold text">{selectedSeats.length}</span> Tickets
                 </section>
             </div>
