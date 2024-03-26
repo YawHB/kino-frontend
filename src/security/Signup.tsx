@@ -38,23 +38,30 @@ export default function Signup() {
     };
 
     return (
-        <>
+        <section>
             <form className="form" onSubmit={handleSubmit(onSubmit)}>
-                <h2>Signup</h2>
+                <h2 className="text-xl font-bold">Sign-up</h2>
                 <div className="flex flex-col gap-1">
                     <label htmlFor="username">Username</label>
-                    <input {...register("username", { required: true })} />
+                    <input className=" rounded-sm focus:outline-none focus:outline-red-600" {...register("username", { required: true })} />
                 </div>
                 <div className="flex flex-col gap-1">
                     <label htmlFor="username">Password</label>
-                    <input type="password" {...register("password", { required: true })} />
+                    <input
+                        className=" rounded-sm focus:outline-none focus:outline-red-600"
+                        type="password"
+                        {...register("password", { required: true })}
+                    />
                 </div>
                 <div className="flex flex-col gap-1">
                     <label htmlFor="username">Email</label>
-                    <input type="email" {...register("email", { required: true })} />
+                    <input className=" rounded-sm focus:outline-none focus:outline-red-600" type="email" {...register("email", { required: true })} />
                 </div>
-                <input className="bg-red-500 mt-3" type="submit" value={"Submit"} />
+                <input className=" mt-5 w-24 rounded-md bg-red-600 p-2 font-bold text-white" type="submit" value={"Submit"} />
             </form>
-        </>
+            <div>
+                Already have an account? <span className="font-bold">Log-in here!</span>
+            </div>
+        </section>
     );
 }
