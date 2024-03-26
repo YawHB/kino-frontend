@@ -1,14 +1,18 @@
 import { useAuth } from "../contexts/AuthProvider";
-import {useLocation, useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useToast } from "@/components/ui/use-toast";
+
+type Props = {
+    changeForm: React.Dispatch<React.SetStateAction<"signup" | "login">>;
+};
 
 type FormValues = {
     username: string;
     password: string;
 };
 
-export default function Login() {
+export default function Login({ changeForm }: Props) {
     const { toast } = useToast();
     const auth = useAuth();
     const navigate = useNavigate();
@@ -29,7 +33,7 @@ export default function Login() {
                     description: "Username: " + user.username,
                 });
 
-                const {roles} = loggedInUser;
+                const { roles } = loggedInUser;
 
                 roles.includes("ADMIN") ? navigate("/admin", { replace: true }) : navigate("/movies", { replace: true });
             })
@@ -44,24 +48,37 @@ export default function Login() {
     };
 
     return (
-        <>
-            
+        <section className="animate-fade-in">
             <form className="form" onSubmit={handleSubmit(onSubmit)}>
-                <h2 className="align">Login</h2>
+                <h2 className="mb-5 text-2xl font-bold">Log-in</h2>
                 <div className="flex flex-col gap-1">
                     <label htmlFor="username">Username</label>
-                    <input {...register("username", { required: true })} />
+                    <input className="rounded-sm focus:outline-none focus:outline-red-600" {...register("username", { required: true })} />
                     {errors.username?.type === "required" && <p>Username is required</p>}
                 </div>
 
                 <div className="flex flex-col gap-1">
                     <label htmlFor="username">Password</label>
-                    <input type="password" {...register("password", { required: true })} />
+                    <input
+                        className="rounded-sm focus:outline-none focus:outline-red-600"
+                        type="password"
+                        {...register("password", { required: true })}
+                    />
                     {errors.password?.type === "required" && <p>Password is required</p>}
                 </div>
 
-                <input className="bg-red-500 mt-3" type="submit" value="Login" />
+                <input
+                    className="mt-5 w-24 cursor-pointer rounded-md bg-red-600 p-2 font-bold text-white transition-all hover:bg-red-400 active:scale-95"
+                    type="submit"
+                    value="Login"
+                />
             </form>
-        </>
+            <div className="text-center">
+                Don't have an account?{" "}
+                <span className="cursor-pointer font-bold transition-all hover:text-red-400" onClick={() => changeForm("signup")}>
+                    Sign-up here!
+                </span>
+            </div>
+        </section>
     );
 }

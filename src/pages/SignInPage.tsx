@@ -1,11 +1,14 @@
+import { useState } from "react";
 import Login from "../security/Login";
 import Signup from "../security/Signup";
 
 export default function SignInPage() {
+    const [form, setForm] = useState<"signup" | "login">("login");
+
     return (
-        <div className="grid grid-cols-2 w-1/2 m-auto my-10">
-            <Signup />
-            <Login />
+        <div className="m-auto my-10 max-w-lg">
+            {form === "signup" && <Signup changeForm={setForm} />}
+            {form === "login" && <Login changeForm={setForm} />}
         </div>
     );
 }

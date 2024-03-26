@@ -13,7 +13,7 @@ export default function AuthStatus() {
                     <p className="font-bold">Logged in as: {auth.username}</p>
                     <NavLink to={"/logout"}>
                         <Button style="primary" icon={<MdLogout size={20} />}>
-                            Logout
+                            Sign out
                         </Button>
                     </NavLink>
                 </>
@@ -21,7 +21,7 @@ export default function AuthStatus() {
                 <>
                     <NavLink to={"/login"}>
                         <Button style="primary" icon={<MdLogin size={20} />}>
-                            Login
+                            Log in
                         </Button>
                     </NavLink>
                 </>
