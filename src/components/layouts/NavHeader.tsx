@@ -10,7 +10,7 @@ export default function NavHeader() {
     const auth = useAuth();
 
     return (
-        <nav className="flex flex-col items-center gap-4 bg-gradient-to-t from-red-700 to-red-600 p-3 drop-shadow-lg sm:flex-row sm:justify-between">
+        <nav className="bg-nav-background flex flex-col items-center gap-4 bg-red-700 bg-cover bg-repeat p-3 drop-shadow-lg sm:flex-row sm:justify-between sm:bg-contain">
             <section className="flex cursor-pointer items-center gap-3">
                 <NavLink to={"/movies"}>
                     <div className="group flex flex-col items-center">

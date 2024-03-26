@@ -30,9 +30,9 @@ export default function MovieDetailsPage() {
 
     return (
         <div className="mx-auto max-w-4xl">
-            <section className="mb-12 flex flex-col items-center justify-center gap-10 sm:flex-row sm:items-start">
+            <section className="mb-12 flex flex-col items-center justify-center gap-10 bg-[var(--backgroundColor)] sm:flex-row sm:items-start p-5 shadow-lg rounded-lg">
                 <div className="animate-fade-in sm:min-w-60">
-                    <img className="w-full max-w-sm rounded-md object-cover drop-shadow-lg" src={POSTER_URL + movie?.posterPath} alt="poster" />
+                    <img className="w-full max-w-sm rounded-lg object-cover drop-shadow-lg" src={POSTER_URL + movie?.posterPath} alt="poster" />
                 </div>
 
                 <div className="flex flex-col">

@@ -49,7 +49,7 @@ export default function Auditorium({ screening, handleSeatClick }: Props) {
         // cols = seatsPerRow
         // rows = numberOfRows
         <>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center rounded-lg bg-[var(--backgroundColor)] p-3 shadow-lg">
                 <div className=" mb-5 flex h-5 w-full items-center justify-center rounded-sm bg-gray-600 text-sm text-white">Screen</div>
                 {seats && reservedSeats && (
                     <div
@@ -58,7 +58,6 @@ export default function Auditorium({ screening, handleSeatClick }: Props) {
                             gridTemplateColumns: `repeat(${seatsPerRow}, minmax(0, 1fr))`,
                             gridGap: "0.25rem",
                             width: "90%",
-                            marginBottom: "50px",
                         }}
                     >
                         {seats?.map((seat) => (

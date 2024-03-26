@@ -16,7 +16,7 @@ export default function MovieItem({ movie }: Props) {
 
     return (
         <article className="group flex max-w-52 flex-col items-center justify-between">
-            <Link to={`${movie.id}`} className="w-full">
+            <Link to={`${movie.id}`}>
                 <img
                     className="h-[313px] w-full cursor-pointer rounded-xl object-cover brightness-100 drop-shadow-md transition-all group-hover:brightness-110"
                     src={POSTER_URL + movie.poster}

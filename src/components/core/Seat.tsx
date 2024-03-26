@@ -2,30 +2,26 @@ import { Iseat } from "@/models/seat.ts";
 import { log } from "console";
 import { useState } from "react";
 
-
 type Props = {
     seat: Iseat;
     onSeatClick: (seat: Iseat) => void;
     disabled: boolean;
 };
 
-
 function getColor(isSelected: boolean, disabled: boolean) {
-
     if (disabled) {
         return "fill-red-600";
-    } 
+    }
 
     if (isSelected) {
         return "fill-blue-500";
     } else {
-        return "fill-green-500"
+        return "fill-green-500";
     }
 }
 
 const Seat = ({ seat, onSeatClick, disabled }: Props) => {
     const [isSelected, setIsSelected] = useState(false);
-    
 
     const handleClick = () => {
         if (disabled) return;
@@ -34,10 +30,9 @@ const Seat = ({ seat, onSeatClick, disabled }: Props) => {
     };
 
     const color = getColor(isSelected, disabled);
-    
 
     return (
-        <div className={`size-4 sm:size-6 ${color}  ${!disabled && `hover:cursor-pointer hover:contrast-150 `}`} onClick={handleClick}>
+        <div className={`size-5 sm:size-6 ${color}  ${!disabled && `hover:cursor-pointer hover:contrast-150 `}`} onClick={handleClick}>
             <svg
                 version="1.0"
                 xmlns="http://www.w3.org/2000/svg"
