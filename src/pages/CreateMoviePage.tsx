@@ -44,7 +44,7 @@ export default function CreateMoviePage() {
                 const dateString = displayDate.toLocaleString().split(", ")[0];
 
                 toast({
-                    title: "Movie created!",
+                    title: "Movie added!",
                     description: `Title: ${TMDBMovie!.title} with the premiere date: ${dateString}`,
                 });
 

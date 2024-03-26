@@ -20,6 +20,9 @@ type Props = {
 
 export default function CreateMovieForm({ handleSearch, onSubmit, isSuccess, children }: Props) {
     const [date, setDate] = useState<Date | undefined>(undefined);
+
+    console.log(date);
+
     const {
         register,
         handleSubmit,
@@ -87,8 +90,8 @@ export default function CreateMovieForm({ handleSearch, onSubmit, isSuccess, chi
                 </div>
 
                 <input
-                    disabled={!isSuccess && !date}
-                    className={`${isSuccess && date ? "bg-green-500 hover:cursor-pointer" : "bg-red-500 disabled:bg-slate-500"} mt-3`}
+                    disabled={!isSuccess || !date}
+                    className="mt-3 w-24 cursor-pointer rounded-md bg-red-600 p-1 font-bold text-white transition-all hover:bg-red-400 active:scale-95 disabled:cursor-not-allowed disabled:bg-slate-300 disabled:text-slate-400 disabled:active:scale-100"
                     type="submit"
                     value="Submit"
                 />
