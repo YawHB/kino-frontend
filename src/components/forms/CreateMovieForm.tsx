@@ -51,7 +51,7 @@ export default function CreateMovieForm({ handleSearch, onSubmit, isSuccess, chi
                     />
                     <input
                         className={
-                            "mt-1 w-24 cursor-pointer rounded-md bg-red-600 p-1 font-bold text-white transition-all hover:bg-red-400 active:scale-95"
+                            "mt-1 w-20 cursor-pointer rounded-md bg-red-600 p-1 text-white transition-all hover:bg-red-400 active:scale-95"
                         }
                         onClick={() => handleSearch(getValues("id"))}
                         type="button"

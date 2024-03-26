@@ -29,9 +29,9 @@ export default function MovieDetailsPage() {
     if (isLoading) return <div>Loading...</div>;
 
     return (
-        <div className="max-w-4xl mx-auto">
-            <section className="flex flex-col items-center justify-center gap-10 sm:flex-row sm:items-start">
-                <div className="sm:min-w-60 animate-fade-in">
+        <div className="mx-auto max-w-4xl">
+            <section className="mb-12 flex flex-col items-center justify-center gap-10 sm:flex-row sm:items-start">
+                <div className="animate-fade-in sm:min-w-60">
                     <img className="w-full max-w-sm rounded-md object-cover drop-shadow-lg" src={POSTER_URL + movie?.posterPath} alt="poster" />
                 </div>
 
@@ -45,9 +45,7 @@ export default function MovieDetailsPage() {
                 </div>
             </section>
 
-            <div>
-                <ScreeningOverview movieId={Number(id as string)} />
-            </div>
+            <ScreeningOverview movieId={Number(id as string)} />
         </div>
     );
 }

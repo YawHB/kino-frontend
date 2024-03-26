@@ -27,31 +27,32 @@ export default function ScreeningOverview({ movieId }: Props) {
 
     return (
         <>
-            <h2 className="my-8 text-2xl font-bold sm:text-3xl">Showings in {kino}</h2>
-            <section className="relative flex w-full justify-center">
-                {/* // Gradient fade effect, parent needs to be relative */}
-                <div className="pointer-events-none absolute z-10 h-full w-[90%] bg-[linear-gradient(90deg,rgba(255,220,174,1)0%,rgba(0,0,0,0)5%,rgba(0,0,0,0)95%,rgba(255,220,174,1)100%)]"></div>
-
-                <Carousel className="ml-0 w-[90%]">
-                    <CarouselPrevious variant={"ghost"} className="transition-all hover:scale-125 hover:bg-white active:scale-100" />
-                    <CarouselContent className="pl-0 mx-1">
-                        {week.map((date) => {
-                            const s = screenings?.filter((screen) => {
-                                const currDate = new Date(screen.startTime);
-
-                                return new Intl.DateTimeFormat("en-GB", DATE_TIME_OPTIONS).format(currDate) == date;
-                            }) as IScreening[];
-
-                            return (
-                                <CarouselItem key={date} className="basis-20 sm:basis-36 pl-0">
-                                    <ScreeningDate date={date} screenings={s} />
-                                </CarouselItem>
-                            );
-                        })}
-                    </CarouselContent>
-                    <CarouselNext variant={"ghost"} className="transition-all hover:scale-125 hover:bg-white active:scale-100" />
-                </Carousel>
+            <h2 className="text-2xl mb-3 font-bold sm:text-3xl">Showings in {kino}</h2>
+            {(screenings?.length ?? 0) > 0 ? 
+            <section className="bg-[var(--backgroundColor)] p-3 rounded-lg shadow-lg">
+                <div className="relative flex w-full justify-center">
+                    {/* // Gradient fade effect, parent needs to be relative */}
+                    <div className="pointer-events-none absolute z-10 h-full w-[90%] bg-[linear-gradient(90deg,rgba(255,220,174,1)0%,rgba(0,0,0,0)5%,rgba(0,0,0,0)95%,rgba(255,220,174,1)100%)]"></div>
+                    <Carousel className="ml-0 w-[90%]">
+                        <CarouselPrevious variant={"ghost"} className="transition-all hover:scale-125 hover:bg-white active:scale-100" />
+                        <CarouselContent className="mx-1 pl-0">
+                            {week.map((date) => {
+                                const s = screenings?.filter((screen) => {
+                                    const currDate = new Date(screen.startTime);
+                                    return new Intl.DateTimeFormat("en-GB", DATE_TIME_OPTIONS).format(currDate) == date;
+                                }) as IScreening[];
+                                return (
+                                    <CarouselItem key={date} className="basis-20 pl-0 sm:basis-36">
+                                        <ScreeningDate date={date} screenings={s} />
+                                    </CarouselItem>
+                                );
+                            })}
+                        </CarouselContent>
+                        <CarouselNext variant={"ghost"} className="transition-all hover:scale-125 hover:bg-white active:scale-100" />
+                    </Carousel>
+                </div>
             </section>
+            : <div>No showings for this movie</div>}
         </>
     );
 }
