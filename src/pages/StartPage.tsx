@@ -42,13 +42,13 @@ export default function StartPage() {
     if (isLoading) return <div>Loading data...</div>;
 
     return (
-        <div className="animate-fade-in flex flex-col items-center justify-center md:flex-row">
+        <div className="flex h-[90vh] animate-fade-in flex-col items-center justify-center gap-5 md:flex-row">
             <aside className="mb-3 flex flex-col items-center text-center">
-                <img className="max-w-xs" src="cat_popcorn.png" alt="cat_popcorn" />
-                <h1 className="text-3xl font-semibold">Welcome!</h1>
-                <h2 className="text-2xl">Choose a kino</h2>
+            <h1 className="text-3xl font-semibold">Welcome to CYBA Cinemas!</h1>
+                <img className="max-w-xs drop-shadow-xl" src="cat_popcorn.png" alt="cat_popcorn" />
             </aside>
             <aside className="flex flex-col items-center md:items-start">
+                <h2 className="w-full text-center text-2xl">Choose a kino</h2>
                 {kinos?.map((kino) => <StartPageButton key={kino.id} name={kino.name} city={kino.city} onClick={handleClick} />)}
             </aside>
         </div>

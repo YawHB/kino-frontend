@@ -11,8 +11,13 @@ export default function NavHeader() {
 
     return (
         <nav>
-            <div className="mx-auto flex flex-wrap items-center justify-between bg-gradient-to-t from-red-700 to-red-600 p-5 drop-shadow-lg">
-                <div className="flex gap-3">
+            <div className="mx-auto flex flex-wrap items-center justify-between bg-gradient-to-t from-red-700 to-red-600 p-3 drop-shadow-lg">
+                <section className="flex items-center gap-3">
+                    <div className="flex flex-col items-center">
+                        <img className="max-w-20 drop-shadow-sm" src="cat_popcorn.png" alt="cat_popcorn" />
+                        <p className="font-bold text-red-300 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">CYBA Cinemas</p>
+                    </div>
+                    <KinoSelect />
                     {!auth.isLoggedInAs(["ADMIN"]) && (
                         <NavLink to={"/movies"}>
                             <Button style="primary" icon={<MdLocalMovies size={20} />}>
@@ -20,10 +25,13 @@ export default function NavHeader() {
                             </Button>
                         </NavLink>
                     )}
+                </section>
+
+                <section className="flex items-center gap-3">
                     {auth.isLoggedInAs(["ADMIN"]) && (
                         <NavLink to={"/admin"}>
                             <Button style="primary" icon={<MdAdminPanelSettings size={20} />}>
-                                Admin
+                                Admin Dashboard
                             </Button>
                         </NavLink>
                     )}
@@ -34,16 +42,8 @@ export default function NavHeader() {
                             </Button>
                         </NavLink>
                     )}
-                </div>
-                <div className="flex items-center gap-2">
-                    <img className="max-w-20" src="cat_popcorn.png" alt="cat_popcorn" />
-                    <p className="font-semibold">CYBA Kino</p>
-                </div>
-
-                <div className="flex items-center gap-5">
-                    <KinoSelect />
                     <AuthStatus />
-                </div>
+                </section>
             </div>
         </nav>
     );

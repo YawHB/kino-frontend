@@ -13,7 +13,7 @@ export default function StartPageButton({ name, city, onClick }: Props) {
             onClick={() => onClick(name)}
         >
             <h2 className="text-2xl font-bold text-white">{name}</h2>
-            <h3>{city}</h3>
+            <h3 className="text-white opacity-70">{city}</h3>
         </article>
     );
 }

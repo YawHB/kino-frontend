@@ -10,7 +10,7 @@ export default function AuthStatus() {
         <>
             {auth.isLoggedIn() ? (
                 <>
-                    <p className="font-bold">Logged in as: {auth.username}</p>
+                    {/* <p className="font-bold">Logged in as: {auth.username}</p> */}
                     <NavLink to={"/logout"}>
                         <Button style="primary" icon={<MdLogout size={20} />}>
                             Sign out
