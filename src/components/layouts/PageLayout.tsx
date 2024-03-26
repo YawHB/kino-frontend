@@ -1,6 +1,6 @@
 import { ReactNode, useEffect } from "react";
-import { useKino } from "../contexts/KinoProvider";
-import NavHeader from "../components/layouts/NavHeader";
+import { useKino } from "../../contexts/KinoProvider";
+import NavHeader from "./NavHeader";
 import { useNavigate } from "react-router-dom";
 
 type Props = {

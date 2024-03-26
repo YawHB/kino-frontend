@@ -1,11 +1,11 @@
 import { Route, Routes } from "react-router-dom";
-import PageLayout from "./pages/PageLayout";
+import PageLayout from "./components/layouts/PageLayout";
 import Logout from "./security/Logout";
 import SignInPage from "./pages/SignInPage";
 import { Toaster } from "@/components/ui/toaster";
 import RequireKino from "./security/RequireKino";
 import RequireAuth from "./security/RequireAuth";
-import StartPage from "./pages/StartPage";       
+import StartPage from "./pages/StartPage";
 import ProfilePage from "./pages/ProfilePage";
 import MovieListPage from "./pages/MovieListPage";
 import MovieDetailsPage from "./pages/MovieDetailsPage";
@@ -15,18 +15,14 @@ import CreateScreeningPage from "@/pages/CreateScreeningPage.tsx";
 import ScreeningPage from "@/pages/ScreeningPage.tsx";
 import SubmitReservationPage from "@/pages/SubmitReservationPage.tsx";
 
-
-
 function App() {
     return (
-
         <>
             <PageLayout>
                 <Routes>
                     <Route path="/" element={<StartPage />} />
 
                     <Route path="/movies">
-
                         <Route
                             index
                             element={
@@ -37,7 +33,6 @@ function App() {
                         />
 
                         <Route path=":id" element={<MovieDetailsPage />} />
-
                     </Route>
 
                     <Route path="/login" element={<SignInPage />} />
@@ -47,7 +42,7 @@ function App() {
                             index
                             element={
                                 <RequireAuth roles={["ADMIN"]}>
-                                    <AdminDashboardPage/>
+                                    <AdminDashboardPage />
                                 </RequireAuth>
                             }
                         />
@@ -55,7 +50,7 @@ function App() {
                             path={"movie"}
                             element={
                                 <RequireAuth roles={["ADMIN"]}>
-                                    <CreateMoviePage/>
+                                    <CreateMoviePage />
                                 </RequireAuth>
                             }
                         />
@@ -63,7 +58,7 @@ function App() {
                             path={"screening"}
                             element={
                                 <RequireAuth roles={["ADMIN"]}>
-                                    <CreateScreeningPage/>
+                                    <CreateScreeningPage />
                                 </RequireAuth>
                             }
                         />
@@ -80,29 +75,34 @@ function App() {
                         path="/profile"
                         element={
                             <RequireAuth roles={["USER"]}>
-                                <ProfilePage/>
+                                <ProfilePage />
                             </RequireAuth>
                         }
                     />
                     <Route path="/screening">
+                        <Route
+                            index
+                            element={
+                                <RequireAuth roles={["USER"]}>
+                                    <ScreeningPage />
+                                </RequireAuth>
+                            }
+                        />
 
-                        <Route index
-                               element={<RequireAuth roles={["USER"]}>
-                                   <ScreeningPage/>
-                               </RequireAuth>} />
-
-                        <Route path=":screeningId"
-                               element={<RequireAuth roles={["USER"]}>
-                                   <SubmitReservationPage/>
-                               </RequireAuth>} />
-
+                        <Route
+                            path=":screeningId"
+                            element={
+                                <RequireAuth roles={["USER"]}>
+                                    <SubmitReservationPage />
+                                </RequireAuth>
+                            }
+                        />
                     </Route>
-                    <Route path="*" element={<h2>Not found</h2>}/>
+                    <Route path="*" element={<h2>Not found</h2>} />
                 </Routes>
             </PageLayout>
             <Toaster />
         </>
-
     );
 }
 

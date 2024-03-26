@@ -1,22 +1,23 @@
-import {IMovieDetails} from "@/models/movie.ts";
-
+import { IMovieDetails } from "@/models/movie.ts";
 
 type Props = {
-    TMDBMovie: IMovieDetails,
-}
+    TMDBMovie: IMovieDetails;
+};
 
-const POSTER_PREFIX = "https://image.tmdb.org/t/p/w200"
+const POSTER_PREFIX = "https://image.tmdb.org/t/p/w200";
 
-export default function MovieShowcase({TMDBMovie}: Props) {
-
-
+export default function MovieShowcase({ TMDBMovie }: Props) {
     return (
         <>
-            <div>
-                <img src={TMDBMovie.posterPath ? POSTER_PREFIX+TMDBMovie.posterPath : "No poster"} alt=""/>
-                <p>{TMDBMovie.title}</p>
-                <p>Runtime: {TMDBMovie.runtime} minutes</p>
-            </div>
+            <article key={TMDBMovie.id} className="flex animate-fade-in flex-col items-center text-center">
+                <img
+                    className="mb-2 animate-fade-in rounded-md shadow-lg"
+                    src={TMDBMovie.posterPath ? POSTER_PREFIX + TMDBMovie.posterPath : "No poster"}
+                    alt=""
+                />
+                <h2 className="font-bold">{TMDBMovie.title}</h2>
+                <h2>Runtime - {TMDBMovie.runtime} min.</h2>
+            </article>
         </>
-    )
+    );
 }
