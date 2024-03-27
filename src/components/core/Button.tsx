@@ -16,7 +16,7 @@ export default function Button({ onClick, icon, style, children }: Props) {
     const buttonStyle = style === "primary" ? primary : secondary;
 
     return (
-        <button onClick={(e) => onClick && onClick(e)} className={`${buttonStyle} rounded-md bg-none px-4 py-2 text-sm transition-all`}>
+        <button onClick={(e) => onClick && onClick(e)} className={`${buttonStyle} rounded-md bg-none px-4 py-2 text-sm transition-all active:scale-95`}>
             <div className="flex items-center gap-1 align-middle ">
                 {icon && <div>{icon}</div>}
 

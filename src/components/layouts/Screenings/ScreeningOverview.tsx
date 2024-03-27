@@ -27,8 +27,10 @@ export default function ScreeningOverview({ movieId }: Props) {
 
     return (
         <>
-            <h2 className="text-2xl mb-3 font-bold sm:text-3xl">Showings in {kino}</h2>
-            {(screenings?.length ?? 0) > 0 ? 
+            <section className="flex items-end justify-between">
+                <h2 className="text-2xl mb-3 font-bold sm:text-3xl">Showings in {kino}</h2>
+                <img className="w-32 drop-shadow-md" src="/cat_showings.png" alt="cat showings" />
+            </section> 
             <section className="bg-[var(--backgroundColor)] p-3 rounded-lg shadow-lg">
                 <div className="relative flex w-full justify-center">
                     {/* // Gradient fade effect, parent needs to be relative */}
@@ -52,7 +54,7 @@ export default function ScreeningOverview({ movieId }: Props) {
                     </Carousel>
                 </div>
             </section>
-            : <div>No showings for this movie</div>}
+            <div className="text-center font-bold mt-3">No showings for this movie</div>
         </>
     );
 }
